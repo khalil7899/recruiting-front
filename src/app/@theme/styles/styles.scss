@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+@import '~ngx-org-chart/_theming.scss';
+
+// themes - our custom or/and out of the box themes
+@import 'themes';
+
+// framework component themes (styles tied to theme variables)
+@import '~@nebular/theme/styles/globals';
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/grid';
+
+// loading progress bar theme
+@import './pace.theme';
+
+@import './layout';
+@import './overrides';
+
+// install the framework and custom global styles
+@include nb-install() {
+
+  // framework global styles
+  @include nb-theme-global();
+
+  @include ngx-layout();
+  // loading progress bar
+  @include ngx-pace-theme();
+
+  @include nb-overrides();
+};
+
+.user-name {
+  color: white !important;
+}
+.control-item {
+  color: white !important;
+}
+.menu-item a {
+  font-family: Roboto, sans-serif !important;
+  font-size: 0.8125rem;
+  font-weight: 400 !important;
+  line-height: 1.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.menu-item a.active {
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  color: #0b2089 !important;
+}
+
+.menu-item a.active .menu-icon {
+  color: #0b2089 !important;
+}
+
+.p-button-label {
+font-size: 15px !important;
+}
+
+td {
+  text-align: center !important;
+}
+i {
+cursor: pointer;
+}
+label {
+font-size: 13px !important;
+}
+textarea {
+  font-size: 13px !important;
+}
+
+.disabled {
+  cursor: not-allowed !important;
+}
+.disabledPrimary {
+  background-color: #6300ee34;
+  border: #6300ee34;
+  color:white;
+  display: inline-block;
+    font-weight: 400;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.p-dialog  {
+  //width: 35% !important;;
+}
+
+input {
+  font-size: 13px !important;
+}
+
+.primaryBtn {
+  background-color: #0b2089;
+  border: #0b2089;
+  color:white;
+
+  display: inline-block;
+    font-weight: 400;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    user-select: none;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+
+.p-dialog .p-dialog-header {
+  background: #E7E8E8 !important;
+}
+
+.p-button .p-button-icon-left {
+  font-size: 13px !important;
+}
+
+.customer-badge {
+  border-radius: 2px;
+  padding: .25em .5em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .3px;
+
+  &.status-active {
+    background-color: #C8E6C9;
+    color: #256029;
+  }
+
+  &.status-label {
+    background-color: #c5d1e4;
+    color: #2289a0;
+  }
+
+  &.status-blocked {
+    background-color: #FFCDD2;
+    color: #C63737;
+  }
+
+  &.status-negotiation {
+    background-color: #FEEDAF;
+    color: #8A5340;
+  }
+
+  &.status-new {
+    background-color: #B3E5FC;
+    color: #23547B;
+  }
+
+  &.status-renewal {
+    background-color: #ECCFFF;
+    color: #694382;
+  }
+
+  &.status-progress {
+    background-color: #FFD8B2;
+    color: #805B36;
+  }
+
+  &.low {
+    background-color: #e695b0;
+    color: black;
+  }
+
+  &.assignedSkill {
+    background-color: #808080a1;
+    color: black;
+    border-radius: 500px;
+    border-color: #808080a1;
+  }
+
+  &.middle {
+    background-color: #e36891;
+    color: black;
+  }
+
+  &.advanced {
+    background-color: #e62968;
+    color: black;
+  }
+
+  &.expert {
+    background-color: #cc0447;
+    color: black;
+  }
+}
+
+i {
+  color: #0b2089 !important;
+}
+
+select {
+  font-size: 13px !important;
+}
+.p-datatable .p-datatable-tbody > tr > td {
+  text-align: left;
+  border: 1px solid #e9ecef;
+  border-width: 0 0 1px 0;
+  padding: 0.5rem 1rem !important;
+}
+
+
+nb-auth-block {
+  max-width: 100% !important;
+}
+
+ngx-login nb-layout-column {
+  padding: 0 0 0 0 !important;
+  overflow:  hidden !important;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: #0b2089 !important;
+  color: #fff;
+}
+.nb-theme-default nb-stepper .header .step.completed .label-index{
+  background-color: #0b2089 !important;
+  border-color:#0b2089 !important;
+}
+.nb-theme-default nb-stepper .header .step.selected .label-index{
+  border-color:#0b2089 !important;
+}
+.nb-theme-default nb-stepper .header .step.selected{
+  color: #0b2089 !important;
+}
+.step-content{
+  width: 100% !important;
+  height: 340px!important;
+
+}
+nb-stepper{
+  margin-top: 15px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.iti {
+  position: relative;
+  display: inline-block;
+  width: 100% !important;
+}
+.nb-theme-default nb-stepper .step-content {
+   padding: 0px !important;
+}
+.p-autocomplete {
+  display: inline-flex;
+  position: relative;
+  width: 100% !important;
+  text-align: left !important;
+  font-size: 13px !important;
+}
+
+p-cellEditor {
+  font-size: 13px !important;
+}
+p-autoComplete {
+  font-size: 13px !important;
+}
+
+.step_container.ng-star-inserted{
+  height: 270px;
+}
+
+.p-autocomplete-panel {
+    font-size:13px !important;
+}
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: #ffffff;
+  border-color: #0b2089;
+  color: #0b2089;
+}
+
+.p-button {
+  background-color: #0b2089 !important;
+  border-color: #0b2089 !important;
+}

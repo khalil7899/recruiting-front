@@ -1,0 +1,169 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<h4 *ngIf="!showUserWindow" style="background: #E7E8E8; 
+padding: 10px 10px 10px 10px !important;
+    font-size: 20px !important;
+    color: #222b45;margin-left: 10px">
+Liste des utilisateurs
+</h4>
+<div *ngIf="!showUserWindow" class="card" style=" margin: auto;margin-top:3%; border-color:#E7E8E8 !important; border:solid">
+  <p-table #dt [value]="users" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+           [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading"
+           [paginator]="true" currentPageReportTemplate=""
+           [filterDelay]="0" [globalFilterFields]="['userRegistrationNumber','userFirstName','userLastName','userHirringDate','company.companyLabel','businessUnit.businessUnitLabel','userTypeContract','userLogin','userPassword','userCivilStatus','createdAt', 'updatedAt']">
+    <ng-template pTemplate="caption" >
+      <div >
+        <div class="p-d-flex p-ai-center p-jc-between" style=" width: 60%; display: inline-block;">
+          <span class="p-input-icon-left" style="width: 100%">
+                      <i class="pi pi-search"></i>
+                      <input pInputText type="text" style="width: 93%;" class="searchInput, p-inputtext"(input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Chercher un utilisateur.." />
+                  </span>
+          </div>
+  
+          <div style="float:right">
+            <button pButton pRipple label="Nouveau employé RH" icon="pi pi-plus" class="primaryBtn" (click)="showUserWindow = true"></button>
+          </div>
+      </div>
+        
+
+     
+
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr style="text-align: center; font-size: 13px;">
+        <th style="text-align: center; font-size: 13px;width: 10%;"> </th>
+        <th style="text-align: center; font-size: 13px;width: 15%;"> Nom complet </th>
+        <th style="text-align: center; font-size: 13px;width: 10%;"> Matricule </th>
+        <th style="text-align: center; font-size: 13px;width: 10%;"> Date d'embauche </th>
+        <!-- <th style="text-align: center; font-size: 13px;width: 10%;">Télephone </th>
+        <th style="text-align: center; font-size: 13px;width: 15%;"> Email </th>
+        <th style="text-align: center; font-size: 13px;width: 15%;"> Adresse </th>
+         -->
+          <th style="text-align: center; font-size: 13px;width: 10%;">Société </th>
+        <th style="text-align: center; font-size: 13px;width: 15%;"> Unité organisationelle </th>
+        <th style="text-align: center; font-size: 13px;width: 15%;">Type contract </th>
+        
+        <th style="text-align: center; font-size: 13px;width: 8%;">Statut</th>
+        <th style="width: 10%;font-size: 13px; text-align: center;">Actions</th>      </tr>
+      </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr class="p-selectable-row" style="text-align: center; font-size: 13px;">
+        <td  style="text-align: center;font-size: 13px;">
+           <img  class="exemple2" *ngIf="user.userPictureUrl!=null && user.userPictureUrl!='' " [src]="  sanitizer.bypassSecurityTrustResourceUrl(user.userPictureUrl)" style="width: 57px;
+           height: 55px;">
+             <div   *ngIf="user.userPictureUrl=='' || user.userPictureUrl==null " style="width:57px" class="paid-black" placement="top" ><p style="    width: 50px;
+              text-align: center;
+              margin-left: 7%;
+              margin-top: -7%;"  class="pad">{{user.userFirstName[0].toUpperCase()}}{{user.userLastName[0].toUpperCase()}}</p></div>
+         
+            </td>
+        <td  style="text-align: center;font-size: 13px;">
+          {{user.userFirstName}} {{user.userLastName}}
+        </td>
+        <td  style="text-align: center;font-size: 13px;">
+          {{user.userRegistrationNumber}}
+        </td>
+        <td  style="text-align: center;font-size: 13px;">
+          {{user.userHirringDate | date: 'dd-MM-yyyy'}}
+        </td>
+        <!-- <td  style="text-align: center;font-size: 13px;">
+          {{user.userPhoneNumber}}
+        </td> -->
+        
+<!--        
+        <td  style="text-align: center;font-size: 13px;">
+          {{user.userEmail}}
+        </td>
+        <td  style="text-align: center;font-size: 13px;">
+          <div>
+            {{user.userNRue}}
+          </div>
+          <div>
+            {{user.userCity}} - {{user.userPays}}
+          </div>
+              
+        </td> -->
+        <td  style="text-align: center;font-size: 13px;">
+          {{user.company.companyLabel}}
+        </td>
+        <td  style="text-align: center;font-size: 13px;">
+ 
+            {{user.businessUnit.businessUnitLabel}}
+    
+        </td>
+        <td>
+
+            {{user.userTypeContract}}
+ 
+        </td>
+        <td  style="text-align: center;font-size: 13px;">
+          <span *ngIf="user.isBlocked==true" ngbTooltip="Bloqué" class="not-paid-red" placement="top" ></span>
+          <span ngbTooltip="Active" *ngIf="user.isBlocked==false" class="paid-green" placement="top" ></span>
+         
+        </td>
+        <td style="text-align: center;">
+          <div>
+            <i  *ngIf="!user.isBlocked"  placement="top" ngbTooltip="Bloquer"  class="pi pi-lock"  style="margin-right: 7px;color: #6200ee" (click)="bloquerUser(user)"></i>
+            <i  *ngIf="user.isBlocked"   placement="top" ngbTooltip="Activer"  class="pi pi-unlock"  style="margin-right: 7px;color: #6200ee" (click)="activerUser(user)"  ></i>
+           
+            <i    placement="top" ngbTooltip="Modifier"  class="pi pi-pencil"  style="margin-right: 7px;color: #6200ee" (click)="editUser(user)" [disabled]="checkBlockUser(user)" [ngClass]= "{'disabled':  checkBlockUser(user)}"></i>
+            <i    placement="top" ngbTooltip="Supprimer"  class="pi pi-trash"  style="color: #6200ee" (click)="deleteUser(user)"></i>
+          </div>
+
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr style="font-size: 13px">
+        <td colspan="10" style="text-align: left !important;">Aucun utilisateur trouvé!</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Supprimer un utilisateur" [(visible)]="displayDeleteUser" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <br>
+  Voulez-vous supprimer l'utilisateur' <span  class="customer-badge status-negotiation">{{user.userLogin}}</span> ?
+  <ng-template pTemplate="footer">
+    <div style="margin-top: 20px;">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-secondary p-mr-2"
+              (click)="displayDeleteUser=false"></button>
+
+			   <button pButton pRipple label="Supprimer" icon="pi pi-check" class="p-button-danger p-mr-2"
+              (click)="delUser()"></button>
+
+    </div>
+  </ng-template>
+</p-dialog>
+<p-dialog header="Bloquer un utilisateur" [(visible)]="displayBlockUser" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <br>
+  Voulez-vous bloquer l'utilisateur' <span  class="customer-badge status-negotiation">{{user.userLogin}}</span> ?
+  <ng-template pTemplate="footer">
+    <div style="margin-top: 20px;">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-secondary p-mr-2"
+              (click)="displayBlockUser=false"></button>
+
+			   <button pButton pRipple label="Bloquer" icon="pi pi-check" class="p-button-danger p-mr-2"
+              (click)="blockUser()"></button>
+
+    </div>
+  </ng-template>
+</p-dialog>
+<p-dialog header="Activer un utilisateur" [(visible)]="displayActifUser" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <br>
+  Voulez-vous activer l'utilisateur' <span  class="customer-badge status-negotiation">{{user.userLogin}}</span> ?
+  <ng-template pTemplate="footer">
+    <div style="margin-top: 20px;">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-secondary p-mr-2"
+              (click)="displayActifUser=false"></button>
+
+			   <button pButton pRipple label="Activer" icon="pi pi-check" class="p-button-success p-mr-2"
+              (click)="ActifUser()"></button>
+
+    </div>
+  </ng-template>
+</p-dialog>
+<ngx-add-new-user *ngIf="showUserWindow" [user]="user" (addNewUserEvent)="saveNewUser($event)"
+(cancelEvent)="hideUserWindow(); initUser();"></ngx-add-new-user>

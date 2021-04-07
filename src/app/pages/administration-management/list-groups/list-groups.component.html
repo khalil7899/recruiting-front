@@ -1,0 +1,125 @@
+<h4 *ngIf="!displayAddNewGroup && !displayAccessRight"
+style="
+    background: #e7e8e8;
+    padding: 10px 10px 10px 10px !important;
+    font-size: 20px !important;
+    color: #222b45;
+    margin-left: 10px;
+  ">
+    Liste des groupes utilisateurs
+</h4>
+<div *ngIf="!displayAddNewGroup && !displayAccessRight" class="card" style=" margin: auto;margin-top:3%; border-color:#E7E8E8 !important; border:solid">
+
+    <p-table 
+    #dt [value]="groupsList" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="5"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5, 10, 15]" [loading]="loading" [paginator]="true"
+        currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="[
+      'groupId',
+      'groupName',
+      'groupDetails',
+      'createdAt',
+      'updatedAt'
+    ]">
+        <ng-template pTemplate="caption">
+            <div>
+                <div class="p-d-flex p-ai-center p-jc-between" style="width: 60%; display: inline-block">
+                    <span class="p-input-icon-left" style="width: 100%">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" style="width: 93%" class="searchInput, p-inputtext"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Chercher un groupe.." />
+                    </span>
+                </div>
+    
+                <div style="float: right;">
+    
+                    <div style="display: flex">
+                        <button pButton pRipple label="Ajouter" icon="pi pi-plus" class="primaryBtn" (click)="addNewGroup()"
+                            style="margin-right: 10px;"></button>
+    
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    
+        <ng-template pTemplate="header">
+            <tr style="text-align: center; font-size: 13px">
+                <th style="text-align: center; font-size: 13px; width: 30%">Libellé</th>
+                <!-- 
+                <th style="text-align: center; font-size: 13px; width: 20%">Code</th>
+                -->
+                <th style="text-align: center; font-size: 13px; width: 45%">Détails</th>
+                <th style="text-align: center; font-size: 13px; width: 15%"></th>
+                <th style="width: 15%; font-size: 13px; text-align: center">Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-group>
+            <tr class="p-selectable-row" style="text-align: center; font-size: 13px">
+                <td style="text-align: center; font-size: 13px">
+                    {{ group.groupName}}
+                </td>
+                <!-- 
+                <td style="text-align: center; font-size: 13px">
+                    {{ group.groupCode }}
+                </td>
+    -->
+                <td style="text-align: center">
+                    {{ group.groupDetails }}
+                </td>
+                <td>
+                    <div
+                    style="float : left; background-color: #0b2089 ; color: white; width: 20px; height: 20px; border-radius: 40%;margin-right: 7px;margin-top: -3px;"
+                    ngbTooltip="{{group.nbUser}} utilisateur(s)"> {{group.nbUser}}</div>
+                </td>
+                <td style="text-align: center">
+                      <div>
+                         <i placement="top" ngbTooltip="Configurer les droits d'accès" class="pi pi-cog" style="margin-right: 7px"
+                          (click)="EditAccessRight(group)"></i>
+                        <i placement="top" ngbTooltip="Modifier" class="pi pi-pencil" style="margin-right: 7px"
+                            (click)="editGroup(group)"></i>
+                        <i placement="top" ngbTooltip="Supprimer" class="pi pi-trash"
+                            (click)="deleteGroup(group)"></i>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr style="font-size: 13px">
+                <td colspan="8" style="text-align: left !important">
+                    Aucune groupe trouvée!
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+<ngx-add-group *ngIf="displayAddNewGroup"
+    [group]="group"
+    (cancelEvent)="hideAddNewGroup()"
+    (addNewGroupEvent)="saveNewGroup($event)"
+  >
+  </ngx-add-group>
+  <ngx-access-right-management [group]="group" *ngIf="displayAccessRight"
+    (cancelEvent)="hideAccessRights()">
+  </ngx-access-right-management>
+
+
+
+  <p-dialog header="Supprimer un group" [(visible)]="displayDeleteGroup" [modal]="true"
+  [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+  <br>
+  Voulez-vous toujours supprimer le groupe <span
+    class="customer-badge status-negotiation">{{group.groupId}}</span> ?
+  <ng-template pTemplate="footer">
+    <div style="margin-top: 20px;">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-secondary p-mr-2"
+        (click)="displayDeleteGroup=false"></button>
+
+      <button pButton pRipple label="Supprimer" icon="pi pi-check" class="p-button-danger p-mr-2"
+        (click)="delGroup()"></button>
+
+    </div>
+  </ng-template>
+</p-dialog>

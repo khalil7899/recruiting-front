@@ -1,0 +1,44 @@
+.paid-green{
+    height: 18px;
+    width: 18px;
+    background-color: #4dbd4d;
+    border-radius: 50%;
+    display: inline-block;
+}
+.paid-black{
+    background-color: #B5B7B8;
+    //border-radius: 100%;
+    display: inline-block;
+    
+    width:2px;
+    clip-path:ellipse(50% 50%);
+
+}
+.in-progress-orange{
+    height: 18px;
+    width: 18px;
+    background-color: #900C3F;
+    border-radius: 50%;
+    display: inline-block;
+}
+.not-paid-red{
+    height: 18px;
+    width: 18px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
+.exemple1 {
+    width:200px;
+    clip-path:ellipse(50% 50%);
+ }
+ .exemple2 {
+    width:2px;
+    clip-path:ellipse(50% 50%);
+ }
+ .pad{
+     text-align: center;
+    font-size: 30px;
+    padding-top:22px;
+    color: #ffff
+ }
