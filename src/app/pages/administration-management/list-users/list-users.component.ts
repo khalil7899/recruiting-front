@@ -31,15 +31,11 @@ export class ListUsersComponent implements OnInit {
   saveNewUser(userObject) {
     const context = this;
     this.user=userObject.user;
-    this.user.isBlocked=false;
-    delete this.user.company.createdAt;
-
-    delete this.user.company.updatedAt;
     /*this.mySimpleFormat = this.pipe.transform(this.user.userBirthDate, 'dd-MM-yyyy');
     this.user.userBirthDate= this.mySimpleFormat;
     this.mySimpleFormat =   this.pipe.transform(this.user.userHirringDate, 'dd-MM-yyyy');
     this.user.userHirringDate = this.mySimpleFormat;*/
-    this.UtilsService.post(UtilsService.API_USER, this.user).subscribe( response => {
+    this.UtilsService.post(UtilsService.API_RH, this.user).subscribe( response => {
        if(userObject.userPicture!=null){
         this.saveUserPicture(response.userId, userObject.userPicture);
        }else{
@@ -48,12 +44,12 @@ export class ListUsersComponent implements OnInit {
         this.initUser();
         if ( this.user.userId == null) {
           this.UtilsService.showToast('success',
-            'Utilisateur ajouté avec succés',
-            `L'utlisateur'  ${this.user.userLogin} a été ajouté avec succcés`);
+            'Un employé RH ajouté avec succés',
+            `L'employé RH'  ${this.user.userFirstName} ${this.user.userlastName} a été ajouté avec succcés`);
         } else {
           this.UtilsService.showToast('success',
-            'Utilisateur modfié avec succés',
-            `L'utlisateur  ${this.user.userLogin} a été modifié avec succcés`);
+            'Employé RH modfié avec succés',
+            `L'employé RH  ${this.user.userFirstname} ${this.user.userlastName} a été modifié avec succcés`);
         }
        } 
       
@@ -62,7 +58,7 @@ export class ListUsersComponent implements OnInit {
         console.log(error);
         this.UtilsService.showToast('danger',
         'Erreur interne',
-        `Un erreur interne a été produit lors de la sauvegarde du utilisateur ${this.user.userLogin}`); });
+        `Un erreur interne a été produit lors de la persistence du utilisateur ${this.user.userFirstName} ${this.user.userlastName}`); });
 
   }
   saveUserPicture(userId, userPicture) {
@@ -90,13 +86,13 @@ export class ListUsersComponent implements OnInit {
   getAllUsers() {
 
     const context = this;
-    this.UtilsService.get(UtilsService.API_USER).subscribe( response => {
+    this.UtilsService.get(UtilsService.API_RH).subscribe(response => {
         context.users = response;
         },
       error => {
         this.UtilsService.showToast('danger',
           'Erreur interne',
-          `Un erreur interne a été produit lors du chargement des utilisateurs`);
+          `Un erreur interne a été produit lors du chargement des employés RH`);
       });
 
   }

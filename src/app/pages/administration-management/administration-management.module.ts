@@ -39,18 +39,15 @@ import { ConfirmationService } from "primeng/api";
 import { AuthServiceService } from '../../services/auth/auth-service.service';
 import { AuthGuardService } from '../../services/auth/AuthGuard.service';
 import { InterceptService } from '../../services/auth/InterceptService.service';
-import { ListGroupsComponent } from './list-groups/list-groups.component';
 import { AdministrationManagementRoutingModule } from './administration-management-routing.module';
 import {DragDropModule} from 'primeng/dragdrop';
-import { AccessRightManagementComponent } from './access-right-management/access-right-management.component';
 import {LOCALE_ID} from '@angular/core';
 import { UtilsService } from '../../services/utils.service';
-import { AddGroupComponent } from './add-group/add-group.component';
 import {Ng2TelInputModule} from 'ng2-tel-input';
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
 @NgModule({
-  declarations: [AddNewUserComponent,ListUsersComponent, ListGroupsComponent, AddGroupComponent, AccessRightManagementComponent],
+  declarations: [AddNewUserComponent,ListUsersComponent],
   imports: [
     CommonModule,
     AdministrationManagementRoutingModule,
