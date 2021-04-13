@@ -8,11 +8,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
-    title: 'Administration',
-    icon: 'settings-2-outline',
+    title: 'Utilisateurs',
+    icon: 'people-outline',
     children: [
       {
-        title: 'Utilisateurs',
+        title: 'Employés RH',
         link: '/recruiting/administration/users-list',
         icon: 'people-outline',
       },

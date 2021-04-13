@@ -1,5 +1,3 @@
-import { BusinessUnit } from './../../../models/BusinessUnit.model';
-import { Company } from './../../../models/Company.model';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { UtilsService } from "./../../../services/utils.service";
