@@ -10,8 +10,8 @@ Liste des employés RH
            [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [loading]="loading"
            [paginator]="true" currentPageReportTemplate=""
            [filterDelay]="0" [globalFilterFields]="['userRegistrationNumber','userFirstName','userLastName','userHirringDate','company.companyLabel','businessUnit.businessUnitLabel','userTypeContract','userLogin','userPassword','userCivilStatus','createdAt', 'updatedAt']">
-    <ng-template pTemplate="caption" >
-      <div >
+    <ng-template pTemplate="caption">
+      <div>
         <div class="p-d-flex p-ai-center p-jc-between" style=" width: 60%; display: inline-block;">
           <span class="p-input-icon-left" style="width: 100%">
                       <i class="pi pi-search"></i>
@@ -23,6 +23,7 @@ Liste des employés RH
             <button pButton pRipple label="Nouveau employé RH" icon="pi pi-plus" class="primaryBtn" (click)="showUserWindow = true"></button>
           </div>
       </div>
+      
         
 
      
@@ -57,8 +58,8 @@ Liste des employés RH
              <p style="width: 50px;
               text-align: center;
               margin-left: 7%;
-              margin-top: -7%;"  class="pad">{{user.userFirstName[0].toUpperCase()}}{{user.userLastName[0].toUpperCase()}}</p></div>
-             </div>
+              margin-top: -7%;" class="pad">{{user.userFirstName[0].toUpperCase()}}{{user.userLastName[0].toUpperCase()}}</p>
+            </div>
         </td>
         <td style="text-align: center;font-size: 13px;">
           {{user.userFirstName}} {{user.userLastName}}
@@ -87,7 +88,6 @@ Liste des employés RH
             <i  *ngIf="!user.isBlocked" placement="top" ngbTooltip="Bloquer" class="pi pi-lock"  style="margin-right: 7px;color: #6200ee" (click)="bloquerUser(user)"></i>
             <i  *ngIf="user.isBlocked"  placement="top" ngbTooltip="Activer" class="pi pi-unlock"  style="margin-right: 7px;color: #6200ee" (click)="activerUser(user)"  ></i>
           -->
-
             <i placement="top" ngbTooltip="Modifier" class="pi pi-pencil" style="margin-right: 7px;color: #6200ee" (click)="editUser(user)" [disabled]="checkBlockUser(user)" [ngClass]= "{'disabled': checkBlockUser(user)}"></i>
             <i placement="top" ngbTooltip="Supprimer" class="pi pi-trash" style="color: #6200ee" (click)="deleteUser(user)"></i>
           </div>

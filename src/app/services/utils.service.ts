@@ -21,6 +21,10 @@ export class UtilsService {
   public static API_USER = UtilsService.REMOTE_ADDRESS+ "/api/user";
   public static API_RH = UtilsService.REMOTE_ADDRESS + "/api/rh";
   public static API_USER_FILE = UtilsService.REMOTE_ADDRESS + "/api/file";
+  public static API_DOMAIN = UtilsService.REMOTE_ADDRESS+ "/api/domaine";
+  public static API_CANDIDATE = UtilsService.REMOTE_ADDRESS+ "/api/candidat";
+  public static API_TRAINEER = UtilsService.REMOTE_ADDRESS+ "/api/stagiaire";
+
 
   constructor(
     private toastrService: NbToastrService,
@@ -29,6 +33,11 @@ export class UtilsService {
   ) {
 
   }
+  
+  getDomains() {
+    return this.httpClient.get(UtilsService.API_DOMAIN);
+  }
+
 
   public showToast(type: NbComponentStatus, title: string, body: string) {
     const config = {

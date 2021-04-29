@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
 import { Route } from '@angular/compiler/src/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UtilsService } from '../../../services/utils.service';
 
 @Component({
   selector: 'ngx-header',
@@ -19,6 +20,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+  domains:any;
+  domain:any;
+  inputsearch:any;
 
   themes = [
     {
@@ -41,8 +45,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   currentTheme = 'default';
 
-  //userMenu = [ { title: 'Profile'}, { title: 'Log out' } ];
-  userMenu = [ { title: 'Déconnecter' } ];
+  userMenu = [];
+  userMenuAd = [ { title: 'Mon Profile', icon: 'person-outline'}, { title: 'Mon Calendrier', icon: 'calendar-outline' },{ title: 'Déconnecter', icon: 'arrow-circle-left-outline' } ];
+
+  userMenuCond = [ { title: 'Mon Profile', icon: 'person-outline'}, { title: 'Mes Offres', icon: 'briefcase-outline' }
+  , { title: 'Mon Calendrier', icon: 'calendar-outline' },{ title: 'Déconnecter', icon: 'arrow-circle-left-outline' } ];
+  UtilsService: any;
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -50,16 +58,29 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private userService: UserData,
               private layoutService: LayoutService,
               private breakpointService: NbMediaBreakpointsService,
-              private router: Router) {
+              private router: Router,
+              private utils:UtilsService) {
                 this.menuService.onItemClick().subscribe(( event ) => {
                   this.onItemSelection(event.item.title);
                 })
   }
 
+  getDomainsList(){
+    this.utils.getDomains().subscribe(response => {
+      this.domains = response;
+      return this.domains;
+      },
+    error => {
+      this.UtilsService.showToast('danger',
+        'Erreur interne',
+        `Un erreur interne lors de chargement des domaines`);
+    });
+  }
+
   ngOnInit() {
     this.currentTheme = this.themeService.currentTheme;
-
-
+    this.domains=this.getDomainsList();
+    console.log(this.domains);
     this.user= this.userService.getCurrentUser();
     let firstName=localStorage.getItem("userFirstName");
     let firstLastName=localStorage.getItem("userLastName");
@@ -87,6 +108,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
       )
       .subscribe(themeName => this.currentTheme = themeName);
+      console.log(localStorage);
+
+      if(localStorage.getItem("userRole")==="ADMINISTRATOR" ||localStorage.getItem("userRole")==="RH"){
+        this.userMenu=this.userMenuAd;
+
+      }else{
+        this.userMenu=this.userMenuCond;
+      }
   }
 
   ngOnDestroy() {
@@ -120,6 +149,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
       localStorage.removeItem('roles');
       localStorage.removeItem('picture')
     }
+    else if(item==="Mon Profile")
+    {
+      this.router.navigateByUrl("/recruiting/profile");
+    }
+
+    else if(item==="Mes Offres")
+    {
+      this.router.navigateByUrl("/recruiting/offres");
+    }
+
+    else if(item==="Mon Calendrier")
+    {
+      this.router.navigateByUrl("/recruiting/calendrier");
+    }
+  }
+
+  search(){
+
   }
   
 }

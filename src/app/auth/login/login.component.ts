@@ -34,7 +34,10 @@ export class NgxLoginComponent {
         localStorage.setItem('token',data.token);
         localStorage.setItem('userFirstName',data.userFirstName);
         localStorage.setItem('userLastName',data.userLastName);
+        localStorage.setItem('userRole',data.userRole);
         localStorage.setItem("roles", JSON.stringify(data.roles));
+        localStorage.setItem("roleUser", JSON.stringify(data.userRole));
+        
         if(data.userPictureUrl != null && data.userPictureUrl != ""){
         localStorage.setItem("picture",data.userPictureUrl)
         }

@@ -38,6 +38,9 @@ import { DialogModule } from "primeng/dialog";
 import { DialogService, DynamicDialogModule } from "primeng/dynamicdialog";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { ConfirmationService } from "primeng/api";
+import { MesOffresComponent } from './mes-offres/mes-offres.component';
+import { MonCalendrierComponent } from './mon-calendrier/mon-calendrier.component';
+import { MonProfileComponent } from './mon-profile/mon-profile.component';
 
 
 @NgModule({
@@ -71,9 +74,9 @@ import { ConfirmationService } from "primeng/api";
     PanelModule,
     DialogModule,
     DynamicDialogModule,
-    ConfirmDialogModule,
+    ConfirmDialogModule
   ],
-  declarations: [PagesComponent],
+  declarations: [PagesComponent, MesOffresComponent, MonCalendrierComponent, MonProfileComponent],
   providers: [
     
     DialogService,

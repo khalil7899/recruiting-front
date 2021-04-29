@@ -12,6 +12,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'people-outline',
     children: [
       {
+        title: 'Profil',
+        link: '/recruiting/administration/profil',
+        icon: 'people-outline',
+      },
+      {
         title: 'Employés RH',
         link: '/recruiting/administration/users-list',
         icon: 'people-outline',

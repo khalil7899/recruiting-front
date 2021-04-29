@@ -5,11 +5,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./one-column.layout.scss'],
   template: `
     <nb-layout windowMode>
-      <nb-layout-header fixed style="background-color: #0b2089">
-        <ngx-header></ngx-header>
+    <nb-layout-header fixed style="background-color: #0b2089; margin-left: 35px;margin-right: 35px;width: auto;">
+    <ngx-header></ngx-header>
       </nb-layout-header>
 
-      <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive style="background-color:#ebebeb">
+      <nb-sidebar *ngIf="isCondidat" class="menu-sidebar" tag="menu-sidebar" responsive style="background-color:#ebebeb; margin-left: 35px;">
         <ng-content select="nb-menu"></ng-content>
       </nb-sidebar>
 
@@ -21,4 +21,13 @@ import { Component } from '@angular/core';
     </nb-layout>
   `,
 })
-export class OneColumnLayoutComponent {}
+export class OneColumnLayoutComponent {
+  isCondidat=false;
+
+  constructor(){
+    if(localStorage.getItem("userRole")==="CANDIDATE" ||localStorage.getItem("userRole")==="TRAINEE"){
+      this.isCondidat=true;
+
+    }
+  }
+}

@@ -1,9 +1,33 @@
-<div class="header-container">
+<div class="header-container" style="width: 10%">
   <div class="logo-container">
-    <a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
+    <span style=" color: white; font-size: 25px; font-weight: bold;">I JOB</span>
+    <!--<a (click)="toggleSidebar()" href="#" class="sidebar-toggle">
       <nb-icon icon="menu-2-outline" style="color: white"></nb-icon>
     </a>
-    <a class="logo" href="#" (click)="navigateHome()" style="color: white">ZENPEOPLE</a>
+    <a class="logo" href="#" (click)="navigateHome()" style="color: white">ZENPEOPLE</a>-->
+  </div>
+</div>
+<div class="header-container containersearch">
+  <div class="row rowsearch">
+    <div class="mb-1 col-md-7 col-12 p-field">
+      <input nbInput
+       fullWidth
+       name="inputsearch"
+       type="text"
+       [(ngModel)]="inputsearch"
+       id="inputsearch"
+       placeholder="Chercher...">
+    </div>
+    <div class="mb-1 col-md-4 col-12 p-field">
+      <nb-select [(selected)]="domain" id="domain" name="domain" placeholder="Domaine" style="width: 100%;">
+      <nb-option value="null">Domaine</nb-option>
+      <nb-option *ngFor="let d of domains;" value="d.domaineLabel">{{d.domaineLabel}}</nb-option>
+
+    </nb-select>
+  </div>
+    <div class="mb-1 col-md-1 col-12 p-field">
+      <button nbButton (click)="search()" style="background-color: #031c682e !important;border-radius: 50px;"><i class="fas fa-search"></i></button>
+    </div>
   </div>
 </div>
 

@@ -44,10 +44,11 @@ import {DragDropModule} from 'primeng/dragdrop';
 import {LOCALE_ID} from '@angular/core';
 import { UtilsService } from '../../services/utils.service';
 import {Ng2TelInputModule} from 'ng2-tel-input';
+import { ProfilComponent } from './profil/profil.component';
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
 @NgModule({
-  declarations: [AddNewUserComponent,ListUsersComponent],
+  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent],
   imports: [
     CommonModule,
     AdministrationManagementRoutingModule,

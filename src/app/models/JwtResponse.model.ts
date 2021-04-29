@@ -14,4 +14,6 @@ export class JwtResponse {
  
   userPictureUrl: string;
 
+  userRole: string;
+
 }
