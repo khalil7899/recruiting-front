@@ -151,12 +151,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
     else if(item==="Mon Profile")
     {
-      this.router.navigateByUrl("/recruiting/profile");
+      this.router.navigateByUrl("/recruiting/administration/profil");
     }
 
     else if(item==="Mes Offres")
     {
-      this.router.navigateByUrl("/recruiting/offres");
+      this.router.navigateByUrl("/recruiting/administration/job-list");
     }
 
     else if(item==="Mon Calendrier")

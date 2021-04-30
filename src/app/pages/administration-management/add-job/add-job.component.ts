@@ -13,21 +13,31 @@ export class AddJobComponent implements OnInit {
     "jobOffreId":null,
 	  "jobOffreLabel":"",
 	  "jobOffreDescription":"",
-	  "jobOffreDomaineActivite":"",
+	  "jobOffreDomaineActivite":"null",
     "contractType":"",
 	  "stageOffreCompetences":"",
     "jobOffreSalaire":0,
 	  "jobOffreDateDebut":this.datePipe.transform(new Date(),"dd-MM-yyyy"),
     "jobOffreDateFin":this.datePipe.transform(new Date(),"dd-MM-yyyy"),
-    "jobStatus":"Ouvert",
+    "jobStatus":"OPENED",
   }
   @Output() cancelEvent = new EventEmitter();
-
+  filiereList:any;
   constructor(private datePipe:DatePipe,private utilsService:UtilsService) { }
 
   ngOnInit(): void {
+    this.getAllFilieres();
   }
 
+  getAllFilieres() {
+    this.utilsService.get(UtilsService.API_DOMAIN).subscribe(response => {
+      this.filiereList = response;
+    }, error => {
+      this.utilsService.showToast('danger',
+        'Erreur interne',
+        `Un erreur interne a été produit lors du chargement de la liste des filiéres `);
+    });
+  }
 
   checkJobValid(){
    return false;
@@ -64,14 +74,18 @@ export class AddJobComponent implements OnInit {
       "jobOffreId":null,
       "jobOffreLabel":"",
       "jobOffreDescription":"",
-      "jobOffreDomaineActivite":"",
+      "jobOffreDomaineActivite":"null",
       "contractType":"",
       "stageOffreCompetences":"",
       "jobOffreSalaire":0,
       "jobOffreDateDebut":this.datePipe.transform(new Date(),"dd-MM-yyyy"),
       "jobOffreDateFin":this.datePipe.transform(new Date(),"dd-MM-yyyy"),
-      "jobStatus":"Ouvert",
+      "jobStatus":"OPENED",
     }  
+  }
+  compareFiliere(a: any, b: any): boolean {
+    if (a == null || b == null) return true;
+    return a.domaineId === b.domaineId;
   }
 
 }

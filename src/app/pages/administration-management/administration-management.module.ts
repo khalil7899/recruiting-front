@@ -47,6 +47,8 @@ import {Ng2TelInputModule} from 'ng2-tel-input';
 import { ProfilComponent } from './profil/profil.component';
 import { AddJobComponent } from './add-job/add-job.component';
 import { JobListComponent } from './job-list/job-list.component';
+import {EditorModule} from 'primeng/editor';
+
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
 @NgModule({
@@ -81,7 +83,8 @@ registerLocaleData(localeFr, 'fr', localeFrExtra);
     ConfirmDialogModule,
     CardModule,
     Ng2TelInputModule,
-    DragDropModule
+    DragDropModule,
+    EditorModule
   ],
   providers: [
     UtilsService,
