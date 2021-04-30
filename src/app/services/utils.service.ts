@@ -24,6 +24,7 @@ export class UtilsService {
   public static API_DOMAIN = UtilsService.REMOTE_ADDRESS+ "/api/domaine";
   public static API_CANDIDATE = UtilsService.REMOTE_ADDRESS+ "/api/candidat";
   public static API_TRAINEER = UtilsService.REMOTE_ADDRESS+ "/api/stagiaire";
+  public static API_JOB = UtilsService.REMOTE_ADDRESS+ "/api/offre-job";
 
 
   constructor(

@@ -1,0 +1,134 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<h4 style="background: #E7E8E8; 
+padding: 10px 10px 10px 10px !important;
+    font-size: 20px !important;
+    color: #222b45;margin-left: 10px"
+   >
+Ajouter une offre
+</h4>
+<div  class="card" style=" margin: auto;margin-top:3%;border-color:#E7E8E8 !important; border:solid">
+
+        <div class="p-grid p-fluid">
+          <div style="display: flex">
+                <div class="mb-12 col-md-12 col-12">
+                  <label for="groupName" class="p-float-label" style="font-size: 13px">Titre</label>
+                  <div class="p-inputgroup p-fluid">
+                    <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+
+                    <input [ngClass]="{
+                        'is-invalid': job.jobOffreLabel == ''
+                      }" type="text" class="form-control p-field" id="jobOffreLabel" [(ngModel)]="job.jobOffreLabel"
+                      style="font-size: 13px" />
+                  </div>
+                </div>
+                </div>
+                </div>
+
+                <div class="p-grid p-fluid">
+                    <div style="display: flex">
+                          <div class="mb-12 col-md-12 col-12">
+                            <label for="groupName" class="p-float-label" style="font-size: 13px">Description</label>
+                            <div class="p-inputgroup p-fluid">
+                              <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+
+                              <input [ngClass]="{
+                                  'is-invalid': job.jobOffreDescription == ''
+                                }" type="text" class="form-control p-field" id="jobOffreDescription" [(ngModel)]="job.jobOffreDescription"
+                                style="font-size: 13px" />
+                            </div>
+                          </div>
+                    </div>
+                 </div>
+                 <div class="p-grid p-fluid">
+                    <div style="display: flex">
+                          <div class="mb-6 col-md-6 col-6">
+                            <label for="jobOffreDomaineActivite" class="p-float-label" style="font-size: 13px">Domaine</label>
+                            <div class="p-inputgroup p-fluid">
+                              <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+
+                              <input [ngClass]="{
+                                  'is-invalid': job.jobOffreDescription == ''
+                                }" type="text" class="form-control p-field" id="jobOffreDomaineActivite" [(ngModel)]="job.jobOffreDomaineActivite"
+                                style="font-size: 13px" />
+                            </div>
+                          </div>
+
+                          <div class="mb-6 col-md-6 col-6">
+                            <label for="contractType" class="p-float-label" style="font-size: 13px">Type de contrat</label>
+                            <div class="p-inputgroup p-fluid">
+                              <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+                              <select [(ngModel)]="job.contractType" class="browser-default custom-select">
+                                <option value="STAGE">STAGE</option>
+                                <option value="CDD">CDD</option>
+                                <option value="CDI">CDI</option>
+                                <option value="SIVP">SIVP</option>
+                            </select>
+                            </div>
+                          </div>
+                    </div>
+                 </div>
+                 <div class="p-grid p-fluid">
+                    <div style="display: flex">
+                          <div class="mb-12 col-md-12 col-12">
+                            <label for="stageOffreCompetences" class="p-float-label" style="font-size: 13px">Compétences</label>
+                            <div class="p-inputgroup p-fluid">
+                              <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+
+                              <textarea [ngClass]="{
+                                  'is-invalid': job.stageOffreCompetences == ''
+                                }" type="text" class="form-control p-field" id="stageOffreCompetences" [(ngModel)]="job.stageOffreCompetences"
+                                style="font-size: 13px" >
+                            </textarea>
+                            </div>
+                          </div>
+                    </div>
+                 </div>
+
+
+              <div class="p-grid p-fluid">
+                    <div style="display: flex">
+                          <div class="mb-6 col-md-6 col-6">
+                            <label for="jobOffreSalaire" class="p-float-label" style="font-size: 13px">Salaire</label>
+                            <div class="p-inputgroup p-fluid">
+                              <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+                              <input  type="number" class="form-control p-field" id="jobOffreSalaire" [(ngModel)]="job.jobOffreSalaire"
+                                style="font-size: 13px" />
+                            </div>
+                          </div>
+                          <div class="mb-6 col-md-6 col-6">
+                            <label for="jobOffreDateFin" class="p-float-label" style="font-size: 13px">Date de fin</label>
+                            <div class="p-inputgroup p-fluid">
+                              <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+                              <input type="date" class="form-control p-field" id="jobOffreDateFin" [(ngModel)]="job.jobOffreDateFin"
+                              style="font-size: 13px" />
+                            </div>
+                          </div>
+                    </div>
+                 </div>
+
+                 <div class="p-grid p-fluid" *ngIf="job.jobOffreId != null">
+                    <div style="display: flex">
+                          <div class="mb-12 col-md-12 col-12">
+                            <label for="jobStatus" class="p-float-label" style="font-size: 13px">Status</label>
+                            <div class="p-inputgroup p-fluid">
+                              <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+                              <select [(ngModel)]="job.jobStatus" class="browser-default custom-select">
+                                <option value="Ouvert">Ouvert</option>
+                                <option value="En cours">En cours</option>
+                                <option value="Fermé">Fermé</option>
+                                <option value="Candidature(s) retenue(s)">Candidature(s) retenue(s)</option>
+                            </select>
+                            </div>
+                          </div>
+                    </div>
+                 </div>
+
+        <div class="p-panel p-panel-header" style="margin-top: 20px;float: right; padding: 2%;margin-left: 75%;">
+
+        <button pButton pRipple label="Annuler" icon="pi pi-times" class="btn btn-secondary" (click)="cancel()"></button>
+
+        <button [disabled]="checkJobValid()" [ngClass]="{'disabled':  checkJobValid()}" pButton pRipple
+          label="Enregistrer" icon="pi pi-check" class="primaryBtn" (click)="saveJob()"
+          style="margin-left: 10px;"></button>
+      </div>
+</div>> 

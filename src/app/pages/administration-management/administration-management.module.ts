@@ -45,10 +45,12 @@ import {LOCALE_ID} from '@angular/core';
 import { UtilsService } from '../../services/utils.service';
 import {Ng2TelInputModule} from 'ng2-tel-input';
 import { ProfilComponent } from './profil/profil.component';
+import { AddJobComponent } from './add-job/add-job.component';
+import { JobListComponent } from './job-list/job-list.component';
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
 @NgModule({
-  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent],
+  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent],
   imports: [
     CommonModule,
     AdministrationManagementRoutingModule,

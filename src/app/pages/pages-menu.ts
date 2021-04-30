@@ -21,6 +21,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/recruiting/administration/users-list',
         icon: 'people-outline',
       },
+      {
+        title: 'Liste des offres',
+        link: '/recruiting/administration/job-list',
+        icon: 'people-outline',
+      },
       
     ],
 
