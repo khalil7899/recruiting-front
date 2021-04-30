@@ -22,6 +22,7 @@ export class JobListComponent implements OnInit {
 	  "jobOffreDateDebut":"jobOffreDateDebut",
     "jobOffreDateFin":"jobOffreDateFin",
     "jobStatus":"jobStatus",
+    "jobReference": "",
     "candJobs":["",""],
   }
 

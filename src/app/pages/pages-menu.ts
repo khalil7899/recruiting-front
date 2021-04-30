@@ -8,6 +8,22 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Liste des annonces',
+    icon: 'people-outline',
+    children: [
+      {
+        title: 'Stages',
+        //link: '/recruiting/administration/job-list',
+        icon: 'layers-outline',
+      },
+      {
+        title: 'Emploies',
+        link: '/recruiting/administration/job-list',
+        icon: 'layers-outline',
+      },
+    ],
+  },
+  /*{
     title: 'Utilisateurs',
     icon: 'people-outline',
     children: [
@@ -29,7 +45,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
       
     ],
 
-  },
+  },*/
   
 
 ];

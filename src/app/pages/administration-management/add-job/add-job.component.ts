@@ -20,6 +20,7 @@ export class AddJobComponent implements OnInit {
 	  "jobOffreDateDebut":this.datePipe.transform(new Date(),"dd-MM-yyyy"),
     "jobOffreDateFin":this.datePipe.transform(new Date(),"dd-MM-yyyy"),
     "jobStatus":"OPENED",
+    "jobReference": "",
   }
   @Output() cancelEvent = new EventEmitter();
   filiereList:any;
@@ -81,6 +82,7 @@ export class AddJobComponent implements OnInit {
       "jobOffreDateDebut":this.datePipe.transform(new Date(),"dd-MM-yyyy"),
       "jobOffreDateFin":this.datePipe.transform(new Date(),"dd-MM-yyyy"),
       "jobStatus":"OPENED",
+      "jobReference": "",
     }  
   }
   compareFiliere(a: any, b: any): boolean {
