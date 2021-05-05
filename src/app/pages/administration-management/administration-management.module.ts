@@ -48,11 +48,12 @@ import { ProfilComponent } from './profil/profil.component';
 import { AddJobComponent } from './add-job/add-job.component';
 import { JobListComponent } from './job-list/job-list.component';
 import {EditorModule} from 'primeng/editor';
+import { DetailsOffreComponent } from './details-offre/details-offre.component';
 
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
 @NgModule({
-  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent],
+  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent, DetailsOffreComponent],
   imports: [
     CommonModule,
     AdministrationManagementRoutingModule,

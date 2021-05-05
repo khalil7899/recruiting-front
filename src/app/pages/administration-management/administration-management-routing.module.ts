@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ListUsersComponent } from './list-users/list-users.component';
 import { ProfilComponent } from './profil/profil.component';
 import { JobListComponent } from './job-list/job-list.component';
+import { DetailsOffreComponent } from './details-offre/details-offre.component';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,10 @@ export const routes: Routes = [
     {
       path: 'job-list',
       component: JobListComponent,
+    },
+    {
+      path: 'job-details',
+      component: DetailsOffreComponent,
     },
 
 ];

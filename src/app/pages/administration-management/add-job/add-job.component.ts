@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UtilsService } from '../../../services/utils.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { UtilsService } from '../../../services/utils.service';
 })
 export class AddJobComponent implements OnInit {
 
-  job={
+  @Input() job={
     "jobOffreId":null,
 	  "jobOffreLabel":"",
 	  "jobOffreDescription":"",

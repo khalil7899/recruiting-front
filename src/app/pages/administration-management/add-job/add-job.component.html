@@ -43,10 +43,7 @@ Ajouter une offre
                     <option *ngFor="let filiere of filiereList" [ngValue]="filiere">{{filiere.domaineLabel}}</option>
 
                   </select>
-                  <!-- <input [ngClass]="{
-          'is-invalid': job.jobOffreDescription == ''
-        }" type="text" class="form-control p-field" id="jobOffreDomaineActivite" [(ngModel)]="job.jobOffreDomaineActivite"
-        style="font-size: 13px" /> -->
+                
                 </div>
               </div>
 
@@ -105,11 +102,6 @@ Ajouter une offre
             <div class="p-fluid md-12">
               <span class="p-inputgroup-addon"><i class="pi pi-ellipsis-h"></i></span>
               <p-editor [(ngModel)]="job.jobOffreDescription" [style]="{'height':'320px'}"></p-editor>
-
-              <!-- <input [ngClass]="{
-        'is-invalid': job.jobOffreDescription == ''
-      }" type="text" class="form-control p-field" id="jobOffreDescription" [(ngModel)]="job.jobOffreDescription"
-      style="font-size: 13px" /> -->
             </div>
           </div>
           </div>
@@ -150,7 +142,7 @@ Ajouter une offre
         <button pButton pRipple label="Annuler" icon="pi pi-times" class="btn btn-secondary" (click)="cancel()"></button>
     
         <button [disabled]="checkJobValid()" [ngClass]="{'disabled':  checkJobValid()}" pButton pRipple
-          label="Enregistrer" icon="pi pi-check" class="primaryBtn" (click)="saveJob()"
+          [label]="job.jobOffreId!=null ? 'Modifier':'Enregistrer'" icon="pi pi-check" class="primaryBtn" (click)="saveJob()"
           style="margin-left: 10px;"></button>
       </div>
 </div>

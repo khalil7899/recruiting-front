@@ -1,0 +1,169 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<h4 style="background: #E7E8E8; 
+padding: 10px 10px 10px 10px !important;
+    font-size: 20px !important;
+    color: #222b45;margin-left: 10px">
+    Liste des offres
+    <div style="float: right;">
+
+    </div>
+</h4>
+<div class="card" style="width: 90%; margin: auto;margin-top:3%; border-color:#E7E8E8 !important; border:solid">
+    <p-panel header="Information sur l'annonce">
+        <div class=row>
+            <div class="col-10">
+                <div style="margin-left: 1%;">
+                    <div style="color: black;font-size: 20px;margin-top: 20px;font-weight: bold;">{{job.jobOffreLabel}}
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <span style="font-size: 18px;font-weight: bold;">
+                            Domaine
+                        </span>
+                    </div>
+                    <div style="font-size: 15px;margin-top: 20px;">
+                        <span>
+                            {{job.jobOffreDomaineActivite.domaineLabel}}
+                        </span>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <span style="font-size: 18px;font-weight: bold;">
+                            Description
+                        </span>
+                    </div>
+                    <div style="margin-top: 15px;" [innerHTML]="job.jobOffreDescription">
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <span style="font-size: 18px;font-weight: bold;">
+                            Compétence
+                        </span>
+                    </div>
+                    <div style="font-size: 15px;margin-top: 15px;">
+                        <span>{{job.stageOffreCompetences}}</span>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <span style="font-size: 18px;font-weight: bold;">
+                            Date d'expiration
+                        </span>
+                    </div>
+                    <div style="font-size: 15px;margin-top: 15px;">
+                        <span>{{job.jobOffreDateFin}}</span>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <span style="font-size: 18px;font-weight: bold;">
+                            Contrat
+                        </span>
+                    </div>
+                    <div style="font-size: 15px;margin-top: 15px;">
+                        <span>{{job.contractType}}</span>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <span style="font-size: 18px;font-weight: bold;">
+                            Salaire
+                        </span>
+                    </div>
+                    <div style="font-size: 15px;margin-top: 15px;">
+                        <span>{{job.jobOffreSalaire}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div style="float: right;margin-top: 20px">
+                    <div style="color: #aaaaaa;font-size: 15px">
+                        <span>{{job.jobOffreDateDebut}}</span>
+                    </div>
+                    <button *ngIf="isRh==false" pButton pRipple label="Postuler"
+                        class="btn btn-secondary btn_stepper next" (click)="postuler()"
+                        style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
+                    <button *ngIf="isRh==true" pButton pRipple label="Editer" class="btn btn-secondary btn_stepper next"
+                        (click)="editer()" style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
+                </div>
+            </div>
+        </div>
+    </p-panel>
+    <p-panel header="Candidature">
+
+
+        <p-table #dt [value]="listCandidat" dataKey="userId" styleClass="p-datatable-customers" [rowHover]="true"
+            [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 15]" [paginator]="true"
+            currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="[]">
+
+
+            <ng-template pTemplate="caption">
+                <div>
+                    <div class="p-d-flex p-ai-center p-jc-between" style="width: 55%; display: inline-block">
+                        <span class="p-input-icon-left" style="width: 100%">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" style="width: 93%" class="searchInput, p-inputtext"
+                                (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Chercher une Candidature" />
+                        </span>
+                    </div>
+
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr style="text-align: center; font-size: 15px">
+                    <th style="font-size: 13px; width: 7%;text-align: center;"></th>
+                    <th style="font-size: 13px; width: 20%;text-align: center;">Nom Complet</th>
+                    <th style="font-size: 13px; width: 20%;text-align: center;">Diplome</th>
+                    <th style="font-size: 13px; width: 20%;text-align: center;">Ecole </th>
+                    <th style="font-size: 13px; width: 15%;text-align: center;">Nombre d'éxperience </th>
+                    <th style="font-size: 13px; width: 10%;text-align: center;">Actions</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-cand>
+                <tr>
+                    <td style="font-size: 13px;text-align: center;font-weight: bold;">
+                        <img class="exemple2" *ngIf="cand.userPictureUrl!=null && cand.userPictureUrl!='' "
+                            [src]="sanitizer.bypassSecurityTrustResourceUrl(cand.userPictureUrl)" style="width: 57px;
+                   height: 55px;">
+                        <div *ngIf="cand.userPictureUrl=='' || cand.userPictureUrl==null " style="width:57px"
+                            class="paid-black" placement="top">
+                            <p style="    width: 50px;
+                 text-align: center;
+                 margin-left: 7%;
+                 margin-top: -7%;" class="pad">
+                                {{cand.userFirstName[0].toUpperCase()}}{{cand.userLastName[0].toUpperCase()}}
+                            </p>
+                        </div>
+                    </td>
+
+
+
+                    <td style="font-size: 13px;text-align: center;">{{cand.userFirstName}} {{cand.userLastName}} </td>
+                    <td style="font-size: 13px;text-align: center;">
+                        <div *ngIf='cand.userRole=="CANDIDATE"'>{{cand.candidatDiplome}}</div>
+                        <div *ngIf='cand.userRole=="Trainee"'>{{cand.stagiaireFuturDiplome}}</div>
+                    </td>
+                    <td style="font-size: 13px;text-align: center;">
+                        <div *ngIf='cand.userRole=="CANDIDATE"'>{{cand.candidatEcole}}</div>
+                        <div *ngIf='cand.userRole=="Trainee"'>{{cand.stagiaireEcole}}</div>
+                    </td>
+                    <td style="font-size: 13px;text-align: center;">
+                        <div *ngIf='cand.userRole=="CANDIDATE"'>{{cand.candidatNumberExperience}}</div>
+                        <div *ngIf='cand.userRole=="Trainee"'>pas d'expérience</div>
+                    </td>
+                    <td style="font-size: 13px;text-align: center;">
+
+                        <div>
+                            <i placement="top" ngbTooltip="View" class="pi pi-eye"  style="margin-right: 7px; color: #4700ee" ></i>
+                            <i placement="top" ngbTooltip="Réserver RDV" class="pi pi-calendar" style="margin-right: 7px; color: #4700ee"></i>
+                            <i  placement="top" ngbTooltip="Réfuser" class="pi pi-times"  style="color: #4700ee"></i>
+                        </div>
+
+                    </td>
+
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+                <tr style="font-size: 13px">
+                  <td colspan="8" style="text-align: left !important;">Aucune candidature trouvée pour ce offre!</td>
+                </tr>
+              </ng-template>
+        </p-table>
+
+    </p-panel>
+
+</div> 
