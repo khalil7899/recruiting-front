@@ -25,6 +25,7 @@ import { ConfirmationService, SharedModule } from 'primeng/api';
 //import { AuthServiceService } from './services/auth-service.service';
 //import { AuthGuardService } from './services/AuthGuard.service';
 //import { InterceptService } from './services/auth/InterceptService.service';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 
 
@@ -47,6 +48,7 @@ import { ConfirmationService, SharedModule } from 'primeng/api';
         CoreModule.forRoot(),
         ThemeModule.forRoot(),
         FormsModule,
+        PdfViewerModule
        
     ],
     providers:[

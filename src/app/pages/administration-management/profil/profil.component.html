@@ -6,7 +6,7 @@ padding: 10px 10px 10px 10px !important;
 </h4>
 
 
-<div style="width: 90%; margin: auto;margin-top:3%; border-color:#E7E8E8 !important; border:solid">
+<div style=" border-color:#E7E8E8 !important;">
   <p-panel header="Informations Personnelles" [toggleable]="false">
     <div class="p-grid p-fluid">
       <div style="display: flex">
@@ -19,10 +19,12 @@ padding: 10px 10px 10px 10px !important;
             <img class="img1" *ngIf="imgURL!=null " [src]="imgURL" style="border-radius: 50%;
                 width: 200px;
                 height: 200px;
+
                 padding: auto;
                 margin-left: 10%;">
             <img class="img2" style="border-radius: 50%; width: 200px;
             height: 200px;
+
             padding: auto;
             margin-left: 10%;" *ngIf="imgURL2!=null" [src]="sanitizer.bypassSecurityTrustResourceUrl(imgURL2)">
 
@@ -205,6 +207,7 @@ padding: 10px 10px 10px 10px !important;
                 <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
                 <textarea type="text" rows="2" class="form-control p-field" id="userNRue" [(ngModel)]="user.userNRue"
                   [ngClass]="{
+
                   'is-valid': user.userNRue != null && user.userNRue !== ''
                 }"></textarea>
               </div>

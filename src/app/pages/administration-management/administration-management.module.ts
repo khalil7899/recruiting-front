@@ -49,12 +49,17 @@ import { AddJobComponent } from './add-job/add-job.component';
 import { JobListComponent } from './job-list/job-list.component';
 import {EditorModule} from 'primeng/editor';
 import { DetailsOffreComponent } from './details-offre/details-offre.component';
+import {TabViewModule} from 'primeng/tabview';
+import { StageListComponent } from './stage-list/stage-list.component';
+//import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
 @NgModule({
-  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent, DetailsOffreComponent],
+  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent, DetailsOffreComponent, StageListComponent],
   imports: [
+    PdfViewerModule,
     CommonModule,
     AdministrationManagementRoutingModule,
     NbMenuModule,
@@ -85,7 +90,10 @@ registerLocaleData(localeFr, 'fr', localeFrExtra);
     CardModule,
     Ng2TelInputModule,
     DragDropModule,
-    EditorModule
+    EditorModule,
+    TableModule,
+    TabViewModule,
+    //NgxExtendedPdfViewerModule
   ],
   providers: [
     UtilsService,

@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   userMenu = [];
   userMenuAd = [ { title: 'Mon Profile', icon: 'person-outline'}, { title: 'Mon Calendrier', icon: 'calendar-outline' },{ title: 'Déconnecter', icon: 'arrow-circle-left-outline' } ];
 
-  userMenuCond = [ { title: 'Mon Profile', icon: 'person-outline'}, { title: 'Mes Offres', icon: 'briefcase-outline' }
+  userMenuCond = [ { title: 'Mon Profile', icon: 'person-outline'},{ title: 'toutes les Offres', icon: 'briefcase-outline' }, { title: 'Mes Offres', icon: 'briefcase-outline' }
   , { title: 'Mon Calendrier', icon: 'calendar-outline' },{ title: 'Déconnecter', icon: 'arrow-circle-left-outline' } ];
   UtilsService: any;
 
@@ -153,10 +153,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     {
       this.router.navigateByUrl("/recruiting/administration/profil");
     }
-
-    else if(item==="Mes Offres")
+     else if(item==="toutes les Offres")
+  {
+    this.router.navigateByUrl("/recruiting/administration/job-list");
+ 
+  }  
+  
+  else if(item==="Mes Offres")
     {
-      this.router.navigateByUrl("/recruiting/administration/job-list");
+     // this.router.navigateByUrl("/recruiting/administration/job-list");
     }
 
     else if(item==="Mon Calendrier")

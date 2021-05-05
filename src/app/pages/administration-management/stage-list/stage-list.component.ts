@@ -3,11 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { UtilsService } from '../../../services/utils.service';
 
 @Component({
-  selector: 'ngx-job-list',
-  templateUrl: './job-list.component.html',
-  styleUrls: ['./job-list.component.scss']
+  selector: 'ngx-stage-list',
+  templateUrl: './stage-list.component.html',
+  styleUrls: ['./stage-list.component.scss']
 })
-export class JobListComponent implements OnInit {
+export class StageListComponent implements OnInit {
+
 
   displayAddJob = false;
   displayDetailsJob = false;
@@ -31,9 +32,9 @@ export class JobListComponent implements OnInit {
   }
 
   apiOffreFiltred: any;
-  constructor(private utilsService: UtilsService, private datePipe: DatePipe) { 
-    this.job.jobOffreDateDebut=this.datePipe.transform(new Date(),"dd-MM-yyyy");
-    this.job.jobOffreDateFin=this.datePipe.transform(new Date(),"dd-MM-yyyy");
+  constructor(private utilsService: UtilsService, private datePipe: DatePipe) {
+    this.job.jobOffreDateDebut = this.datePipe.transform(new Date(), "dd-MM-yyyy");
+    this.job.jobOffreDateFin = this.datePipe.transform(new Date(), "dd-MM-yyyy");
   }
 
   ngOnInit(): void {
@@ -69,16 +70,7 @@ export class JobListComponent implements OnInit {
   }
   getAllJobs() {
     this.apiOffreFiltred = UtilsService.API_JOB;
-    if (this.isCandidat == true) {
-      this.apiOffreFiltred = this.apiOffreFiltred + "/candidatures"
-    }
-    else if (this.isTrainee == true) {
-      this.apiOffreFiltred = this.apiOffreFiltred + "/stages"
-    }
-    else {
-      this.apiOffreFiltred = this.apiOffreFiltred + "/candidatures"
-
-    }
+    this.apiOffreFiltred = this.apiOffreFiltred + "/stages"
     this.utilsService.get(this.apiOffreFiltred).subscribe(
       (response) => {
         this.jobList = response;
