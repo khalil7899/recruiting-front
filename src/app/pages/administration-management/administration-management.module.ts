@@ -51,13 +51,13 @@ import {EditorModule} from 'primeng/editor';
 import { DetailsOffreComponent } from './details-offre/details-offre.component';
 import {TabViewModule} from 'primeng/tabview';
 import { StageListComponent } from './stage-list/stage-list.component';
-//import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { MesOffresComponent } from './mes-offres/mes-offres.component';
 
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
 @NgModule({
-  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent, DetailsOffreComponent, StageListComponent],
+  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent, DetailsOffreComponent, StageListComponent, MesOffresComponent],
   imports: [
     PdfViewerModule,
     CommonModule,
@@ -93,7 +93,7 @@ registerLocaleData(localeFr, 'fr', localeFrExtra);
     EditorModule,
     TableModule,
     TabViewModule,
-    //NgxExtendedPdfViewerModule
+    ConfirmDialogModule,
   ],
   providers: [
     UtilsService,

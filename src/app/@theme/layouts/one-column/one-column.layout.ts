@@ -26,9 +26,9 @@ export class OneColumnLayoutComponent {
   isAdmin:boolean=true;
   roleUser:any;
   constructor(){
-    this.roleUser = localStorage.getItem("roleUser");
+    this.roleUser = localStorage.getItem("userRole");
 
-    if(this.roleUser === '"CANDIDATE"' ||this.roleUser === '"TRAINEE"'){
+    if(this.roleUser === "CANDIDATE" ||this.roleUser === "TRAINEE"){
 
       this.isAdmin=false;
       console.log("----isAdmin------");

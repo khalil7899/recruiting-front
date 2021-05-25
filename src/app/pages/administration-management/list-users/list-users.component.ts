@@ -106,7 +106,7 @@ export class ListUsersComponent implements OnInit {
   delUser() {
     const context = this;
     const url = UtilsService.API_USER + '/' + this.user.userId;
-    this.UtilsService.delete(`${UtilsService.API_USER}/${this.user.userId}`).subscribe( response => {
+    this.UtilsService.delete(`${UtilsService.API_RH}/${this.user.userId}`).subscribe( response => {
         context.users = response;
         this.UtilsService.showToast('success',
           'Utilisateur supprimé avec succés',

@@ -62,16 +62,17 @@ export class ProfilComponent implements OnInit {
   roleUser: any;
   isCandidate: any;
   isTrainee: any;
+  isRh:any;
   filiereList: any;
   fileName = null;
   currentFileCV: File;
 
   constructor(private sanitizer: DomSanitizer, private utilsService: UtilsService) {
-    this.roleUser = localStorage.getItem("roleUser");
+    this.roleUser = localStorage.getItem("userRole");
     console.log("------role user-----" + this.roleUser);
-    console.log(this.roleUser === '"CANDIDATE"');
-    this.isCandidate = this.roleUser === '"CANDIDATE"';
-    this.isTrainee = this.roleUser === '"TRAINEE"';
+    console.log(this.roleUser === "CANDIDATE");
+    this.isCandidate = this.roleUser === "CANDIDATE";
+    this.isTrainee = this.roleUser === "TRAINEE";
   }
 
   
@@ -116,8 +117,13 @@ export class ProfilComponent implements OnInit {
     this.utilsService.get(UtilsService.API_USER).subscribe(response => {
       if (response != null && response.userDto != null) {
         this.user = response.userDto;
-        this.imgURL=this.user.userPictureUrl;
-        this.imgURL2=null;
+        this.imgURL2 = this.user.userPictureUrl;
+        if (this.imgURL2 == null || this.imgURL2 === '') {
+          this.imgURL = './../../assets/images/user.jpg';
+        }
+        else {
+          this.imgURL = null;
+        }
       }
       if (response != null && response.stagiaireDto != null) {
         this.trainee = response.stagiaireDto;

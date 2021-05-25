@@ -5,7 +5,7 @@ import { AuthGuardService } from './services/auth/AuthGuard.service';
 
 export const routes: Routes = [
   {
-    path: 'auth/login',
+    path: '',
     loadChildren:() => import('./auth/auth.module').then(m=> m.NgxAuthModule),
 
   },

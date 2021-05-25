@@ -1,0 +1,194 @@
+::ng-deep .navigation .link nb-icon {
+    display: none !important;
+  }
+  textarea{
+    height: 90px;
+    resize: none;
+  }
+  .titreApp{
+  
+    margin-top: 21px;
+     text-align: center;
+  }
+  .titreApp{
+  
+    margin-top: 21px;
+     text-align: center;
+  }
+  .titreSpan{
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+  }
+  .containner {
+  
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #00275a;
+  }
+  .ijob{
+        font-weight: bold;
+    color: white;
+    font-size: 32px;
+  }
+  .sidelogin {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #00275a;
+  }
+  .btn-image {
+    background-size: contain; //or cover
+  }
+  .btnRegister {
+    background-color: #07112f2e !important;
+    margin-top: 2% !important;
+    border-color: #0b2089;
+  }
+  .btnStagiaire{
+  
+    background-image: url('../../../assets/images/stagiaire.png') !important;
+    background-color: #07112f2e !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 2% !important;
+    border-color: #0b2089;
+    height: 100px;
+    float: right;
+    background-position: center;
+    padding-top: 70px  !important;
+  }
+  .btnCondidat{
+  
+    background-image: url('../../../assets/images/condidat.png') !important;
+    background-color: #07112f2e !important;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 2% !important;
+    border-color: #0b2089;
+    height: 100px;
+    float: right;
+    background-position: center;
+    padding-top: 70px  !important;
+  }
+  .btnNext {
+    // background-image: url('https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png') !important;
+    background-color: #07112f2e !important;
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    margin-top: 2% !important;
+    border-color: #0b2089;
+    // height: 100px;
+    float: right;
+  }
+  
+  .btnPrecedent {
+    background-color: #07112f2e !important;
+    margin-top: 2% !important;
+    border-color: #0b2089;
+    float: left;
+  }
+  
+  .loginblock {
+    float: left;
+    // margin-top: 5%;
+    margin-left: 8%;
+    margin-right: 8%;
+  }
+  
+  
+  nb-layout {
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+  nb-layout-column:first-child {
+    flex: 1 !important;
+    display: block;
+    // background: #e3e6f9;
+  }
+  
+  
+  nb-layout-column:last-child {
+    display: block;
+    flex: 2 !important;
+    // background: #f4f4f7;
+  }
+  
+  .fondecran {
+    // max-width: 410px;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-attachment: inherit;
+    background-size: cover;
+    background-position: 100%;
+    background-image: url('../../../assets/images/bg.jpg');
+  }
+  
+  
+  @media screen and (max-width: 1282px) {
+    nb-layout-column:first-child {
+      flex: 1 !important;
+      // background: #e3e6f9;
+    }
+  
+    .loginblock {
+      display: inline;
+    }
+  
+    nb-layout-column:last-child {
+      flex: none !important;
+      // background: #f4f4f7;
+    }
+  
+    .loginblock {
+      margin: 5% 20%;
+    }
+  
+    /* Le traitement est ici spécifique à l'image */
+  }
+  
+  // @media screen and (max-width: 992px) {
+  //   nb-layout-column:first-child {
+  //     flex: 1 !important;
+  //     // background: #e3e6f9;
+  //   }
+  
+  //   .loginblock {
+  //     display: inline;
+  //   }
+  
+  //   nb-layout-column:last-child {
+  //     flex: 1 !important;
+  //     // background: #f4f4f7;
+  //   }
+  
+  //   /* Le traitement est ici spécifique à l'image */
+  // }
+  
+  @media screen and (max-width: 693px) {
+  
+    nb-layout-column:first-child {
+      flex: 1 !important;
+      // background: #e3e6f9;
+    }
+  
+    .registerblock {
+      margin-top: 20%;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
+  
+    nb-layout-column:last-child {
+      flex: none !important;
+      // background: #f4f4f7;
+    }
+  
+    /* Le traitement est ici spécifique à l'image */
+  
+  }
