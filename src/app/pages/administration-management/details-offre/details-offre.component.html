@@ -3,7 +3,7 @@
 padding: 10px 10px 10px 10px !important;
     font-size: 20px !important;
     color: #222b45;margin-left: 10px">
-  Liste des offres
+  Détails offre
   <div style="float: right;">
 
   </div>
@@ -78,11 +78,10 @@ padding: 10px 10px 10px 10px !important;
             <span>{{job.jobOffreDateDebut| date: 'dd-MM-yyyy'}}</span>
           </div>
           <button *ngIf="isTrainee==true || isCandidate==true" pButton pRipple label="Postuler"
-                  class="btn btn-secondary btn_stepper next" (click)="postuler()"
-                  style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
-          <button *ngIf="isRh==true" pButton pRipple label="Editer"
-                  class="btn btn-secondary btn_stepper next" (click)="editer()"
-                  style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
+            class="btn btn-secondary btn_stepper next" (click)="postuler()"
+            style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
+          <button *ngIf="isRh==true" pButton pRipple label="Editer" class="btn btn-secondary btn_stepper next"
+            (click)="editer()" style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
         </div>
       </div>
     </div>
@@ -157,11 +156,10 @@ padding: 10px 10px 10px 10px !important;
               <span>{{job.jobOffreDateDebut| date: 'dd-MM-yyyy'}}</span>
             </div>
             <button *ngIf="isTrainee==true || isCandidate==true" pButton pRipple label="Postuler"
-                    class="btn btn-secondary btn_stepper next" (click)="postuler()"
-                    style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
-            <button *ngIf="isRh==true" pButton pRipple label="Editer"
-                    class="btn btn-secondary btn_stepper next" (click)="editer()"
-                    style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
+              class="btn btn-secondary btn_stepper next" (click)="postuler()"
+              style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
+            <button *ngIf="isRh==true" pButton pRipple label="Editer" class="btn btn-secondary btn_stepper next"
+              (click)="editer()" style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
           </div>
         </div>
       </div>
@@ -170,8 +168,8 @@ padding: 10px 10px 10px 10px !important;
 
 
       <p-table *ngIf="isJob" #dt [value]="listCandidat" dataKey="userId" styleClass="p-datatable-customers"
-               [rowHover]="true" [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 15]"
-               [paginator]="true" currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="[]">
+        [rowHover]="true" [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 15]" [paginator]="true"
+        currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="[]">
 
 
         <ng-template pTemplate="caption">
@@ -180,8 +178,7 @@ padding: 10px 10px 10px 10px !important;
               <span class="p-input-icon-left" style="width: 100%">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" style="width: 93%" class="searchInput, p-inputtext"
-                       (input)="dt.filterGlobal($event.target.value, 'contains')"
-                       placeholder="Chercher une Candidature" />
+                  (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Chercher une Candidature" />
               </span>
             </div>
 
@@ -189,27 +186,28 @@ padding: 10px 10px 10px 10px !important;
         </ng-template>
         <ng-template pTemplate="header">
           <tr style="text-align: center; font-size: 15px">
-            <th style="font-size: 13px; width: 7%;text-align: center;"></th>
+            <th style="font-size: 13px; width: 10%;text-align: center;"></th>
             <th style="font-size: 13px; width: 20%;text-align: center;">Nom Complet</th>
             <th style="font-size: 13px; width: 20%;text-align: center;">Diplome</th>
-            <th style="font-size: 13px; width: 20%;text-align: center;">Ecole </th>
-            <th style="font-size: 13px; width: 15%;text-align: center;">Nombre d'éxperience </th>
+            <th style="font-size: 13px; width: 15%;text-align: center;">Ecole </th>
+            <th style="font-size: 13px; width: 10%;text-align: center;">Nombre d'éxperience </th>
+            <th style="font-size: 13px; width: 15%;text-align: center;">Etat du candidature</th>
             <th style="font-size: 13px; width: 10%;text-align: center;">Actions</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-cand>
           <tr>
             <td style="font-size: 13px;text-align: center;font-weight: bold;">
-              <img class="exemple2" *ngIf="cand.userPictureUrl!=null && cand.userPictureUrl!='' "
-                   [src]="sanitizer.bypassSecurityTrustResourceUrl(cand.userPictureUrl)" style="width: 57px;
+              <img class="exemple2" *ngIf="cand.candidat.userPictureUrl!=null && cand.candidat.userPictureUrl!='' "
+                [src]="sanitizer.bypassSecurityTrustResourceUrl(cand.candidat.userPictureUrl)" style="width: 57px;
                        height: 55px;">
-              <div *ngIf="cand.userPictureUrl=='' || cand.userPictureUrl==null " style="width:57px"
-                   class="paid-black" placement="top">
+              <div *ngIf="cand.candidat.userPictureUrl=='' || cand.candidat.userPictureUrl==null " style="width:57px"
+                class="paid-black" placement="top">
                 <p style="    width: 50px;
                      text-align: center;
                      margin-left: 7%;
                      margin-top: -7%;" class="pad">
-                  {{cand.userFirstName[0].toUpperCase()}}{{cand.userLastName[0].toUpperCase()}}
+                  {{cand.candidat.userFirstName[0].toUpperCase()}}{{cand.candidat.userLastName[0].toUpperCase()}}
                 </p>
               </div>
             </td>
@@ -217,30 +215,41 @@ padding: 10px 10px 10px 10px !important;
 
 
             <td style="font-size: 13px;text-align: center;">
-              {{cand.userFirstName}} {{cand.userLastName}}
+              {{cand.candidat.userFirstName}} {{cand.candidat.userLastName}}
             </td>
             <td style="font-size: 13px;text-align: center;">
-              <div *ngIf='cand.userRole=="CANDIDATE"'>{{cand.candidatDiplome}}</div>
-              <div *ngIf='cand.userRole=="Trainee"'>{{cand.stagiaireFuturDiplome}}</div>
+              <div >{{cand.candidat.candidatDiplome}}</div>
             </td>
             <td style="font-size: 13px;text-align: center;">
-              <div *ngIf='cand.userRole=="CANDIDATE"'>{{cand.candidatEcole}}</div>
-              <div *ngIf='cand.userRole=="Trainee"'>{{cand.stagiaireEcole}}</div>
+              <div >{{cand.candidat.candidatEcole}}</div>
             </td>
             <td style="font-size: 13px;text-align: center;">
-              <div *ngIf='cand.userRole=="CANDIDATE"'>{{cand.candidatNumberExperience}}</div>
-              <div *ngIf='cand.userRole=="Trainee"'>pas d'expérience</div>
+              <div >{{cand.candidat.candidatNumberExperience}}</div>
+            </td>
+            <td style="font-size: 13px;text-align: center;">
+              <div *ngIf='cand.candJbEtat=="IN_PROGRESS"'>En cours</div>
+              <div *ngIf='cand.candJbEtat=="ACCEPTED"'>Accepté</div>
+              <div *ngIf='cand.candJbEtat=="REFUSED"'>Refusé</div>
+              <div *ngIf='cand.candJbEtat=="WAITING_MEET"'>
+                <span> En attente d'une reunion </span>
+                <span>planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>       
+                     </div>
+              <div *ngIf='cand.candJbEtat=="WAITING_DECISION"'>En attente d'une décision</div>
             </td>
             <td style="font-size: 13px;text-align: center;">
 
               <div>
-                <i placement="top" (click)="visualiserCV(cand.userCvUrl, cand.userFirstName, cand.userLastName)" ngbTooltip="Visualiser CV"
-                   class="pi pi-eye" style="margin-right: 7px; color: #4700ee"></i>
-                <i placement="top" ngbTooltip="Réserver RDV" class="pi pi-calendar"
-                   style="margin-right: 7px; color: #4700ee"></i>
-                <i placement="top" ngbTooltip="Accepter" class="pi pi-check" style="color: #4700ee"></i>
+                <i placement="top"
+                  (click)="visualiserCV(cand.candidat.userCvUrl, cand.candidat.userFirstName, cand.candidat.userLastName)"
+                  ngbTooltip="Visualiser CV" class="pi pi-eye" style="margin-right: 7px; color: #4700ee"></i>
+                <i *ngIf='cand.candJbEtat!="ACCEPTED" && cand.candJbEtat!="REFUSED"' placement="top" ngbTooltip="Réserver RDV" class="pi pi-calendar"
+                  style="margin-right: 7px; color: #4700ee" (click)="reserverRDV(cand)"></i>
+                <i *ngIf='cand.candJbEtat!="ACCEPTED"' (click)="AccepterCand(cand)" placement="top" ngbTooltip="Accepter" class="pi pi-check" style="color: #4700ee"></i>
+                <i *ngIf='cand.candJbEtat=="ACCEPTED"' (click)="AnnuluerAccepterCand(cand)" placement="top" ngbTooltip="Annuluer acceptation" class="pi pi-chevron-circle-up" style="color: #4700ee"></i>
 
-                <i placement="top" ngbTooltip="Réfuser" class="pi pi-times" style="color: #4700ee"></i>
+                <i *ngIf='cand.candJbEtat!="REFUSED"'  (click)="RefuserCand(cand)"placement="top" ngbTooltip="Réfuser" class="pi pi-times" style="color: #4700ee"></i>
+
+                <i *ngIf='cand.candJbEtat=="REFUSED"' (click)=" AnnuluerRefuserCand(cand)" placement="top" ngbTooltip="Annuluer refuse" class="pi pi-directions" style="color: #4700ee"></i>
               </div>
 
             </td>
@@ -262,8 +271,8 @@ padding: 10px 10px 10px 10px !important;
 
 
       <p-table *ngIf="!isJob" #dt [value]="listCandidat" dataKey="userId" styleClass="p-datatable-customers"
-               [rowHover]="true" [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 15]"
-               [paginator]="true" currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="[]">
+        [rowHover]="true" [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 15]" [paginator]="true"
+        currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="[]">
 
 
         <ng-template pTemplate="caption">
@@ -272,8 +281,7 @@ padding: 10px 10px 10px 10px !important;
               <span class="p-input-icon-left" style="width: 100%">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" style="width: 93%" class="searchInput, p-inputtext"
-                       (input)="dt.filterGlobal($event.target.value, 'contains')"
-                       placeholder="Chercher une Candidature" />
+                  (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Chercher une Candidature" />
               </span>
             </div>
 
@@ -281,27 +289,28 @@ padding: 10px 10px 10px 10px !important;
         </ng-template>
         <ng-template pTemplate="header">
           <tr style="text-align: center; font-size: 15px">
-            <th style="font-size: 13px; width: 7%;text-align: center;"></th>
+            <th style="font-size: 13px; width: 10%;text-align: center;"></th>
             <th style="font-size: 13px; width: 20%;text-align: center;">Nom Complet</th>
             <th style="font-size: 13px; width: 20%;text-align: center;">Diplome</th>
-            <th style="font-size: 13px; width: 20%;text-align: center;">Ecole </th>
+            <th style="font-size: 13px; width: 10%;text-align: center;">Ecole </th>
             <th style="font-size: 13px; width: 15%;text-align: center;">Niveau d'étude</th>
+            <th style="font-size: 13px; width: 15%;text-align: center;">Etat du candidature</th>
             <th style="font-size: 13px; width: 10%;text-align: center;">Actions</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-cand>
           <tr>
             <td style="font-size: 13px;text-align: center;font-weight: bold;">
-              <img class="exemple2" *ngIf="cand.userPictureUrl!=null && cand.userPictureUrl!='' "
-                   [src]="sanitizer.bypassSecurityTrustResourceUrl(cand.userPictureUrl)" style="width: 57px;
+              <img class="exemple2" *ngIf="cand.stagiaire.userPictureUrl!=null && cand.stagiaire.userPictureUrl!='' "
+                [src]="sanitizer.bypassSecurityTrustResourceUrl(cand.stagiaire.userPictureUrl)" style="width: 57px;
                        height: 55px;">
-              <div *ngIf="cand.userPictureUrl=='' || cand.userPictureUrl==null " style="width:57px"
-                   class="paid-black" placement="top">
+              <div *ngIf="cand.stagiaire.userPictureUrl=='' || cand.stagiaire.userPictureUrl==null " style="width:57px"
+                class="paid-black" placement="top">
                 <p style="    width: 50px;
                      text-align: center;
                      margin-left: 7%;
                      margin-top: -7%;" class="pad">
-                  {{cand.userFirstName[0].toUpperCase()}}{{cand.userLastName[0].toUpperCase()}}
+                  {{cand.stagiaire.userFirstName[0].toUpperCase()}}{{cand.stagiaire.userLastName[0].toUpperCase()}}
                 </p>
               </div>
             </td>
@@ -309,27 +318,41 @@ padding: 10px 10px 10px 10px !important;
 
 
             <td style="font-size: 13px;text-align: center;">
-              {{cand.userFirstName}} {{cand.userLastName}}
+              {{cand.stagiaire.userFirstName}} {{cand.stagiaire.userLastName}}
             </td>
             <td style="font-size: 13px;text-align: center;">
-              <div>{{cand.stagiaireFuturDiplome}}</div>
+              <div>{{cand.stagiaire.stagiaireFuturDiplome}}</div>
             </td>
             <td style="font-size: 13px;text-align: center;">
-              <div>{{cand.stagiaireEcole}}</div>
+              <div>{{cand.stagiaire.stagiaireEcole}}</div>
             </td>
             <td style="font-size: 13px;text-align: center;">
-              <div>{{cand.stagiaireNiveauEtude}}</div>
+              <div>{{cand.stagiaire.stagiaireNiveauEtude}}</div>
+            </td>
+            <td style="font-size: 13px;text-align: center;">
+              <div *ngIf='cand.candJbEtat=="IN_PROGRESS"'>En cours</div>
+              <div *ngIf='cand.candJbEtat=="ACCEPTED"'>Accepté</div>
+              <div *ngIf='cand.candJbEtat=="REFUSED"'>Refusé</div>
+              <div *ngIf='cand.candJbEtat=="WAITING_MEET"'>
+                <span> En attente d'une reunion </span>
+                <span>planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>
+              </div>
+              <div *ngIf='cand.candJbEtat=="WAITING_DECISION"'>En attente d'une décision</div>
             </td>
             <td style="font-size: 13px;text-align: center;">
 
               <div>
-                <i placement="top" (click)="visualiserCV(cand.userCvUrl, cand.userFirstName, cand.userLastName)" ngbTooltip="Visualiser CV"
-                   class="pi pi-eye" style="margin-right: 7px; color: #4700ee"></i>
-                <i placement="top" ngbTooltip="Réserver RDV" class="pi pi-calendar"
-                   style="margin-right: 7px; color: #4700ee"></i>
-                <i placement="top" ngbTooltip="Accepter" class="pi pi-check" style="color: #4700ee"></i>
+                <i placement="top"
+                  (click)="visualiserCV(cand.stagiaire.userCvUrl, cand.stagiaire.userFirstName, cand.stagiaire.userLastName)"
+                  ngbTooltip="Visualiser CV" class="pi pi-eye" style="margin-right: 7px; color: #4700ee"></i>
+                <i *ngIf='cand.candJbEtat!="ACCEPTED" && cand.candJbEtat!="REFUSED"' placement="top" ngbTooltip="Réserver RDV" (click)="reserverRDV(cand)" class="pi pi-calendar"
+                  style="margin-right: 7px; color: #4700ee"></i>
+                <i *ngIf='cand.candJbEtat!="ACCEPTED"' (click)="AccepterCand(cand)" placement="top" ngbTooltip="Accepter" class="pi pi-check" style="color: #4700ee"></i>
+                <i *ngIf='cand.candJbEtat=="ACCEPTED"' (click)="AnnuluerAccepterCand(cand)" placement="top" ngbTooltip="Annuluer acceptation" class="pi pi-chevron-circle-up" style="color: #4700ee"></i>
 
-                <i placement="top" ngbTooltip="Réfuser" class="pi pi-times" style="color: #4700ee"></i>
+                <i *ngIf='cand.candJbEtat!="REFUSED"' (click)="RefuserCand(cand)" placement="top" ngbTooltip="Réfuser" class="pi pi-times" style="color: #4700ee"></i>
+
+                <i *ngIf='cand.candJbEtat=="REFUSED"' (click)=" AnnuluerRefuserCand(cand)" placement="top" ngbTooltip="Annuluer refuse"  class="pi pi-directions" style="color: #4700ee"></i>
               </div>
 
             </td>
@@ -355,15 +378,32 @@ padding: 10px 10px 10px 10px !important;
 
 
 <p-dialog [header]="currentUserDetail" [(visible)]="displayViewCv" [modal]="true" [style]="{width: '60vw'}"
-    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
 
 
   <div class="pdf-container" style="width: 100%">
-    <pdf-viewer [src]="currentUserCV" [render-text]="true"
-                style="display: block;width: 100%"></pdf-viewer>
+    <pdf-viewer [src]="currentUserCV" [render-text]="true" style="display: block;width: 100%"></pdf-viewer>
   </div>
 
 
 
 </p-dialog>
 
+<p-dialog header="Réserver RDV" [(visible)]="modalReserveRDV" [modal]="true" [style]="{width: '60vw'}"
+  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+  <div style="margin-top: 5%;">
+    
+      <p-calendar [(ngModel)]="dateMeeting" [showTime]="true" inputId="time" [inline]="true"></p-calendar>
+ 
+  </div>
+  <ng-template pTemplate="footer">
+    <div style="margin-top: 20px;">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-secondary p-mr-2"
+              (click)="modalReserveRDV=false"></button>
+
+			   <button pButton pRipple label="Confirmer" icon="pi pi-check" class="p-button-danger p-mr-2"
+              (click)="effectuerRDV()"></button>
+
+    </div>
+  </ng-template>
+</p-dialog>

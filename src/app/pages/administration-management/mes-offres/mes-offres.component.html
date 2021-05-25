@@ -13,13 +13,9 @@ Mes offres
     border-color: #e7e8e8 !important;
     border: solid;
   ">
-  <p-table #dt [value]="candJobList" dataKey="skillId" styleClass="p-datatable-customers" [rowHover]="true" [rows]="5"
+  <p-table #dt [value]="candJobList" dataKey="idCandJob" styleClass="p-datatable-customers" [rowHover]="true" [rows]="5"
     [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 15]"  [paginator]="true"
-    currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="[
-      '',
-      '',
-      ''
-    ]"  selectionMode="single">
+    currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="['','', '']"  selectionMode="single">
     <ng-template pTemplate="caption">
       <div>
         <div class="p-d-flex p-ai-center p-jc-between" style="width: 55%; display: inline-block">
@@ -30,12 +26,6 @@ Mes offres
           </span>
         </div>
 
-        <div style="float: right">
-          <div style="display: flex">
-            <button pButton pRipple label="Ajouter" icon="pi pi-plus" class="primaryBtn" (click)="addNewSkill()"
-              style="margin-right: 10px"></button>
-          </div>
-        </div>
       </div>
     </ng-template>
     <ng-template pTemplate="header">
@@ -63,7 +53,14 @@ Mes offres
           {{ cand.candJbDate | date: 'dd-MM-yyyy' }}
         </td>
         <td style="text-align: center; font-size: 13px">
-          {{ cand.candJbEtat }}
+          <div *ngIf='cand.candJbEtat=="IN_PROGRESS"'>En cours</div>
+              <div *ngIf='cand.candJbEtat=="ACCEPTED"'>Accepté</div>
+              <div *ngIf='cand.candJbEtat=="REFUSED"'>Refusé</div>
+              <div *ngIf='cand.candJbEtat=="WAITING_MEET"'>
+                <span> En attente d'une reunion </span>
+                <span>planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>       
+                     </div>
+              <div *ngIf='cand.candJbEtat=="WAITING_DECISION"'>En attente d'une décision</div>
         </td>
         <td style="text-align: center">
           <div>

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UtilsService } from '../../../services/utils.service';
 import Swal from 'sweetalert2'
 import { DomSanitizer } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'ngx-details-offre',
   templateUrl: './details-offre.component.html',
@@ -31,21 +32,25 @@ export class DetailsOffreComponent implements OnInit {
   @Output() cancelDetails = new EventEmitter<boolean>();
   displayViewCv: boolean = false;
   currentUserCV: any;
-  constructor(private utilsService: UtilsService, private route: Router, private sanitizer: DomSanitizer) { }
+  modalReserveRDV:any;
+  dateMeeting:Date=new Date();
+  currentCand:any;
+  constructor(private utilsService: UtilsService, private route: Router, private sanitizer: DomSanitizer, private datePipe: DatePipe) { }
   ngOnInit(): void {
     this.getCurrentUser();
     console.log("------candidature for current job-------");
     console.log(this.job);
+    this.listCandidat=[];
     this.isJob = this.job.contractType != "STAGE";
     if (this.job.contractType != "STAGE") {
       this.job.candJobs.forEach(candJob => {
-        this.listCandidat.push(candJob.candidat);
+        this.listCandidat.push(candJob);
       });
     }
     if (this.job.contractType == "STAGE") {
       this.job.candJobs.forEach(candJob => {
         console.log("stageiare");
-        this.listCandidat.push(candJob.stagiaire);
+        this.listCandidat.push(candJob);
       });
     }
     console.log("----candidat job list -----");
@@ -194,5 +199,116 @@ export class DetailsOffreComponent implements OnInit {
     this.currentUserCV = userCvUrl;
     this.currentUserDetail = "CV " + userFirstName + " " + userLastName;
 
+  }
+  reserverRDV(cand:any)
+  {
+    console.log("-----reserver RDV-----");
+    this.modalReserveRDV=true;
+    this.currentCand=cand;
+  }
+  effectuerRDV()
+  {
+    console.log("effectuer RDV")
+    console.log(this.currentCand);
+    console.log(this.dateMeeting);
+    let dateMeeting= this.datePipe.transform(this.dateMeeting,'yyyy-MM-dd HH:mm:ss');
+    let url=UtilsService.API_CAND_JOB+"/update/"+this.currentCand.idCandJob
+    if(this.dateMeeting!=null)
+    {
+      url=url+'?meetingDate='+dateMeeting;
+    }
+    this.utilsService.post(url,null).subscribe(response => {
+      this.ngOnInit();
+      this.modalReserveRDV=false;
+      this.redirect();
+    }
+    ,error=>{
+      this.utilsService.showToast('danger',
+      'Erreur interne',
+      `Un erreur interne a été produit lors de la réservation d\'un RDV`);
+    });
+  }
+  AccepterCand(cand)
+  {
+    this.currentCand=cand;
+    let url=UtilsService.API_CAND_JOB+"/accepted/"+this.currentCand.idCandJob
+    url=url+'?etat='+true;
+    this.utilsService.post(url,null).subscribe(response => {
+      this.ngOnInit();
+      this.utilsService.showToast('success',
+      'Acceptation effectuée',
+      `la candidature a été accepte avec success`);
+      this.redirect();
+
+    }
+    ,error=>{
+      this.utilsService.showToast('danger',
+      'Erreur interne',
+      `Un erreur interne a été produit lors de l\'acceptation du candidature`);
+    });
+
+  }
+  AnnuluerAccepterCand(cand)
+  {
+    this.currentCand=cand;
+    let url=UtilsService.API_CAND_JOB+"/accepted/"+this.currentCand.idCandJob
+    url=url+'?etat='+false;
+    this.utilsService.post(url,null).subscribe(response => {
+      this.ngOnInit();
+      this.utilsService.showToast('success',
+      'annuluation de l\'acceptation a été effectuée',
+      `la candidature a été annuluer avec success`);
+      this.redirect();
+    }
+    ,error=>{
+      this.utilsService.showToast('danger',
+      'Erreur interne',
+      `Un erreur interne a été produit lors de l\'annulation dde l\'acceptation candidature`);
+    });
+
+
+  }
+
+  RefuserCand(cand)
+  {
+    this.currentCand=cand;
+    let url=UtilsService.API_CAND_JOB+"/refused/"+this.currentCand.idCandJob
+    url=url+'?etat='+false;
+    this.utilsService.post(url,null).subscribe(response => {
+      this.ngOnInit();
+      this.utilsService.showToast('success',
+      'le refus a été effectuée',
+      ` le refus a été effectuée avec success`);
+      this.redirect();
+    }
+    ,error=>{
+      this.utilsService.showToast('danger',
+      'Erreur interne',
+      `Un erreur interne a été produit lors du refus `);
+    });
+
+  }
+  AnnuluerRefuserCand(cand)
+  {
+    this.currentCand=cand;
+    let url=UtilsService.API_CAND_JOB+"/refused/"+this.currentCand.idCandJob
+    url=url+'?etat='+true;
+    this.utilsService.post(url,null).subscribe(response => {
+      this.ngOnInit();
+      this.utilsService.showToast('success',
+      'le refus a été annuler',
+      ` le refus a été annuluer avec success`);
+      this.redirect();
+    }
+    ,error=>{
+      this.utilsService.showToast('danger',
+      'Erreur interne',
+      `Un erreur interne a été produit lors du refus `);
+    });
+
+  }
+  redirect()
+  {
+    this.cancelDetails.emit(true);
   }
 }

@@ -400,7 +400,7 @@
                 #domaineLabel="ngModel" name="domaineLabel" type="text" id="input-domaineLabel"
                 placeholder="Ville de naissance:" fieldSize="small"
                 [attr.aria-invalid]="domaineLabel.invalid && domaineLabel.touched ? true : null">
-                <option *ngFor="let sectionn of sections" [value]="sectionn">{{sectionn.domaineLabel}}
+                <option *ngFor="let sectionn of sections" [ngValue]="sectionn">{{sectionn.domaineLabel}}
                 </option>
 
               </select>
@@ -416,7 +416,7 @@
             <input type="button" nbButton value="Précédent" (click)="next($event)" id="3" status="info" size="large"
               class="btnPrecedent ">
           </ng-template>
-          <ng-template [ngIf]="section  === '5' && role==='condidat'">
+          <ng-template [ngIf]="section  === '5' && role==='candidat'">
             <hr>
             <!-- 4) Information de condidate -->
             <div class="form-control-group">
@@ -471,7 +471,7 @@
                 #domaineLabel="ngModel" name="domaineLabel" type="text" id="input-domaineLabel"
                 placeholder="Ville de naissance:" fieldSize="small"
                 [attr.aria-invalid]="domaineLabel.invalid && domaineLabel.touched ? true : null">
-                <option *ngFor="let sectionn of sections" [value]="sectionn">{{sectionn.domaineLabel}}
+                <option *ngFor="let sectionn of sections" [ngValue]="sectionn">{{sectionn.domaineLabel}}
                 </option>
 
               </select>

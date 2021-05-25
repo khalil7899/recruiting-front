@@ -1,0 +1,17 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<h4 style="background: #E7E8E8; 
+padding: 10px 10px 10px 10px !important;
+    font-size: 20px !important;
+    color: #222b45;margin-left: 10px">
+    Liste des RDV
+</h4>
+
+<div style=" margin: auto; " >
+    <div class="card"  style="padding:1%; margin-bottom:2%">
+        <div class="row" style="margin-right: 10%;margin-left: 10%;">
+            <p-fullCalendar [events]="events" [options]="options" #calendar></p-fullCalendar>
+            <!-- <p-fullCalendar #calendar ></p-fullCalendar> -->
+
+        </div>
+    </div>
+</div>  

@@ -6,6 +6,7 @@ import { JobListComponent } from './job-list/job-list.component';
 import { DetailsOffreComponent } from './details-offre/details-offre.component';
 import { StageListComponent } from './stage-list/stage-list.component';
 import { MesOffresComponent } from './mes-offres/mes-offres.component';
+import { CalendrierComponent } from './calendrier/calendrier.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +33,10 @@ export const routes: Routes = [
     {
       path: 'mes-offres',
       component: MesOffresComponent,
+    },
+    {
+      path: 'calendrier',
+      component: CalendrierComponent,
     },
 
 ];

@@ -50,7 +50,10 @@
               "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
               "node_modules/leaflet/dist/leaflet.css",
               "src/app/@theme/styles/styles.scss",
-              "node_modules/intl-tel-input/build/css/intlTelInput.css"
+              "node_modules/intl-tel-input/build/css/intlTelInput.css",
+              "node_modules/@fullcalendar/core/main.min.css",
+              "node_modules/@fullcalendar/daygrid/main.min.css",
+              "node_modules/@fullcalendar/timegrid/main.min.css"
             ],
             "scripts": [
               "node_modules/pace-js/pace.min.js",
@@ -64,7 +67,11 @@
               "node_modules/chart.js/dist/Chart.min.js",
               "node_modules/intl-tel-input/build/js/intlTelInput.min.js",
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/moment/min/moment.min.js"
+              "node_modules/moment/min/moment.min.js",
+              "node_modules/@fullcalendar/core/main.min.js",
+              "node_modules/@fullcalendar/daygrid/main.min.js",
+              "node_modules/@fullcalendar/timegrid/main.min.js",
+              "node_modules/@fullcalendar/interaction/main.min.js"
             ]
           },
           "configurations": {

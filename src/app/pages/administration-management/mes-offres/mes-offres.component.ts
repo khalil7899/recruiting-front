@@ -101,7 +101,7 @@ export class MesOffresComponent implements OnInit {
       if (response != null && response.candidatDto != null) {
         this.candidate = response.candidatDto;
         var candJobs = this.candidate.candJobs;
-        await candJobs.forEach(async candJob => {
+         candJobs.forEach(async candJob => {
           this.jobOffre=await this.utilsService.get(UtilsService.API_JOB + "/bycandjob/" + candJob.idCandJob).toPromise();
            candJob.jobOffre=this.jobOffre;
             console.log("------Job Offre---------")

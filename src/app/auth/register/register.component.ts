@@ -46,14 +46,7 @@ ngOnInit(){
     console.log(this.role);
 
     var body={}
-    if (this.role === 'candidat') {
 
-      this.user.candidatFiliere=  this.filiere
-
-    } else if (this.role === 'stagiaire') {
-      this.user.stagiaireFilier=this.filiere
-
-    }
     console.log("------user-------");
     console.log(this.user);
     this.serviceAuth.register( this.role,this.user).subscribe(
@@ -62,7 +55,6 @@ ngOnInit(){
         'Inscription faite',
         `L\'inscription d'un nouveau utilisateur à étè faite avec success`);
         this.router.navigateByUrl("/auth/login");
-
       },
       (error) => {
         console.log(error);
