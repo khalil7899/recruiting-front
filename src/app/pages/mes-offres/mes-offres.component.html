@@ -1,91 +1,11 @@
-<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
-
-<h4  *ngIf="loadingOffre" style="background: #E7E8E8; 
-padding: 10px 10px 10px 10px !important;
-    font-size: 20px !important;
-    color: #222b45;margin-left: 10px">
-Mes offres
-</h4>
-
-
-
-<div *ngIf="loadingOffre" class="card" style="
-    margin: auto;
-    margin-top: 3%;
-    border-color: #e7e8e8 !important;
-    border: solid;
-  ">
-  <p-table #dt [value]="candJobList" dataKey="idCandJob" styleClass="p-datatable-customers" [rowHover]="true" [rows]="5"
-    [showCurrentPageReport]="true" [rowsPerPageOptions]="[10, 15]"  [paginator]="true"
-    currentPageReportTemplate="" [filterDelay]="0" [globalFilterFields]="['','', '']"  selectionMode="single">
-    <ng-template pTemplate="caption">
-      <div>
-        <div class="p-d-flex p-ai-center p-jc-between" style="width: 55%; display: inline-block">
-          <span class="p-input-icon-left" style="width: 100%">
-            <i class="pi pi-search"></i>
-            <input pInputText type="text" style="width: 93%" class="searchInput, p-inputtext"
-              (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Chercher une candidature.." />
-          </span>
+<div class="row">
+  <div class="col-md-12">
+    <nb-card>
+      <nb-card-body>
+        <div class="flex-centered col-xl-4 col-lg-6 col-md-8 col-sm-12">
+          <p>mes-offres works!</p>
         </div>
-
-        
-      </div>
-    </ng-template>
-    <ng-template pTemplate="header">
-      <tr style="text-align: center; font-size: 15px">
-        <th pSortableColumn="libelle" style="text-align: center; font-size: 13px; width: 25%">
-          Offre
-        </th>
-        <th pSortableColumn="code" style="text-align: center; font-size: 13px; width: 10%">
-          date de candidature
-        </th>
-        <th pSortableColumn="details" style="text-align: center; font-size: 13px; width: 30%">
-          Status
-        </th>
-        <th style="text-align: center; font-size: 13px; width: 15%">Action</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-cand>
-      <tr name="cand" id="idCandJob" class="p-selectable-row" style="text-align: center; font-size: 13px"
-        [pSelectableRow]="cand">
-
-        <td style="text-align: center; font-size: 13px">
-          <div *ngIf="cand.jobOffre!=null">{{ cand.jobOffre.jobOffreLabel}}</div>
-        </td>
-        <td style="text-align: center; font-size: 13px">
-          {{ cand.candJbDate  | date: 'dd-MM-yyyy' }}
-        </td>
-        <td style="text-align: center; font-size: 13px">
-          <div *ngIf='cand.candJbEtat=="IN_PROGRESS"'>En cours</div>
-              <div *ngIf='cand.candJbEtat=="ACCEPTED"'>Accepté</div>
-              <div *ngIf='cand.candJbEtat=="REFUSED"'>Refusé</div>
-              <div *ngIf='cand.candJbEtat=="WAITING_MEET"'>
-                <span> En attente d'une reunion </span>
-                <span>planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>       
-                     </div>
-              <div *ngIf='cand.candJbEtat=="WAITING_DECISION"'>En attente d'une décision</div>
-        </td>
-        <td style="text-align: center">
-          <div>
-            <i placement="top" ngbTooltip="Modifier" class="pi pi-eye" style="margin-right: 7px"
-              (click)="detailCand(cand)"></i>
-          
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-
-
-    <ng-template pTemplate="emptymessage">
-      <tr style="font-size: 13px; text-align: left !important">
-        <td colspan="6" style="font-size: 13px; text-align: left !important">Aucune candidature trouvée!</td>
-      </tr>
-    </ng-template>
-  </p-table>
+      </nb-card-body>
+    </nb-card>
+  </div>
 </div>
-
-
-
-<ngx-details-offre *ngIf="displayDetailsJob" [job]="job" (cancelDetails)="cancelDetailsHandler()">
-
-</ngx-details-offre>

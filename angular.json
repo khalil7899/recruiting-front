@@ -71,7 +71,10 @@
               "node_modules/@fullcalendar/core/main.min.js",
               "node_modules/@fullcalendar/daygrid/main.min.js",
               "node_modules/@fullcalendar/timegrid/main.min.js",
-              "node_modules/@fullcalendar/interaction/main.min.js"
+              "node_modules/@fullcalendar/interaction/main.min.js",
+              "node_modules/chart.js/dist/Chart.js"
+       
+              
             ]
           },
           "configurations": {
@@ -146,6 +149,7 @@
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
               "src/app/@theme/styles/styles.scss"
+              
             ],
             "assets": [
               "src/assets",

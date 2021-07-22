@@ -1,0 +1,142 @@
+<h4 *ngIf="!showTraineeWindow" style="background: #E7E8E8; 
+padding: 10px 10px 10px 10px !important;
+    font-size: 20px !important;
+    color: #222b45;margin-left: 10px">
+    Liste des stagiaires
+</h4>
+
+
+<div *ngIf="!showTraineeWindow" class="card"
+    style=" margin: auto;margin-top:3%; border-color:#E7E8E8 !important; border:solid">
+    <p-table #dt [value]="listTrainee" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true" [rows]="5"
+        [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [paginator]="true" currentPageReportTemplate=""
+        [filterDelay]="0"
+        [globalFilterFields]="['userRegistrationNumber','userFirstName','userLastName','userHirringDate','company.companyLabel','businessUnit.businessUnitLabel','userTypeContract','userLogin','userPassword','userCivilStatus','createdAt', 'updatedAt']">
+        <ng-template pTemplate="caption">
+            <div>
+                <div class="p-d-flex p-ai-center p-jc-between" style=" width: 60%; display: inline-block;">
+                    <span class="p-input-icon-left" style="width: 100%">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" style="width: 93%;" class="searchInput, p-inputtext"
+                            (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            placeholder="Chercher un stagiaire.." />
+                    </span>
+                </div>
+
+                <div style="float:right">
+                    <button pButton pRipple label="Nouveau stagiaire" icon="pi pi-plus" class="primaryBtn"
+                        (click)="showTraineeWindow = true"></button>
+                </div>
+            </div>
+
+
+
+
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr style="text-align: center; font-size: 13px;">
+                <th style="text-align: center; font-size: 13px;width: 10%;"> </th>
+                <th style="text-align: center; font-size: 13px;width: 20%;"> Nom complet </th>
+                <th style="text-align: center; font-size: 13px;width: 10%;">Télephone </th>
+                <th style="text-align: center; font-size: 13px;width: 20%;"> Email </th>
+                <th style="text-align: center; font-size: 13px;width: 10%;">Diplome </th>
+                <th style="text-align: center; font-size: 13px;width: 10%;">Ecole</th>
+                <th style="text-align: center; font-size: 13px;width: 10%;">Niveau étude</th>
+                <th style="width: 10%;font-size: 13px; text-align: center;">Actions</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr class="p-selectable-row" style="text-align: center; font-size: 13px;">
+                <td style="text-align: center;font-size: 13px;">
+                    <img class="exemple2" *ngIf="user.userPictureUrl!=null && user.userPictureUrl!='' "
+                        [src]="  sanitizer.bypassSecurityTrustResourceUrl(user.userPictureUrl)" style="width: 57px;
+             height: 55px;">
+                    <div *ngIf="user.userPictureUrl=='' || user.userPictureUrl==null " style="width:57px"
+                        class="paid-black" placement="top">
+                        <p style="    width: 50px;
+                text-align: center;
+                margin-left: 7%;
+                margin-top: -7%;" class="pad">
+                            {{user.userFirstName[0].toUpperCase()}}{{user.userLastName[0].toUpperCase()}}</p>
+                    </div>
+
+                </td>
+                <td style="text-align: center;font-size: 13px;">
+                    {{user.userFirstName}} {{user.userLastName}}
+                </td>
+                <td style="text-align: center;font-size: 13px;">
+                    {{user.userPhoneNumber}}
+                </td>
+                <td style="text-align: center;font-size: 13px;">
+                    {{user.userEmail}}
+                </td>
+                <td style="text-align: center;font-size: 13px;">
+                    {{user.stagiaireFuturDiplome}}
+                </td>
+                <td style="text-align: center;font-size: 13px;">
+                    {{user.stagiaireEcole}}
+                </td>
+                <td style="text-align: center;font-size: 13px;">
+                    {{user.stagiaireNiveauEtude}}
+                </td>
+                <td style="text-align: center;">
+                    <div>
+                        <i placement="top" (click)="visualiserCV(user.userCvUrl, user.userFirstName, user.userLastName)"
+                            ngbTooltip="Visualiser CV" class="pi pi-eye" style="margin-right: 7px; color: #4700ee"></i>
+                        <i placement="top" ngbTooltip="Modifier" class="pi pi-pencil"
+                            style="margin-right: 7px;color: #6200ee" (click)="editUser(user)"></i>
+                        <i placement="top" ngbTooltip="Supprimer" class="pi pi-trash" style="color: #6200ee"
+                            (click)="deleteUser(user)"></i>
+                    </div>
+
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr style="font-size: 13px">
+                <td colspan="10" style="text-align: left !important;">Aucun candidat trouvé!</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+<p-dialog [header]="currentUserDetail" [(visible)]="displayViewCv" [modal]="true" [style]="{width: '60vw'}"
+    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+
+    <div class="pdf-container" style="width: 100%">
+        <pdf-viewer [src]="currentUserCV" [render-text]="true" style="display: block;width: 100%"></pdf-viewer>
+    </div>
+
+
+
+</p-dialog>
+
+
+
+<p-dialog header="Supprimer un utilisateur" [(visible)]="displayDeleteUser" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <br>
+  Voulez-vous supprimer l'utilisateur' <span *ngIf="currentUser!=null" class="customer-badge status-negotiation">{{currentUser.userLogin}}</span> ?
+  <ng-template pTemplate="footer">
+    <div style="margin-top: 20px;">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-secondary p-mr-2"
+              (click)="displayDeleteUser=false"></button>
+
+			   <button pButton pRipple label="Supprimer" icon="pi pi-check" class="p-button-danger p-mr-2"
+              (click)="delUser()"></button>
+
+    </div>
+  </ng-template>
+</p-dialog>
+
+
+
+
+
+<ngx-add-trainee *ngIf="showTraineeWindow" [user]="user" (addNewUserEvent)="saveNewUser($event)"
+(cancelEvent)="hideUserWindow(); initUser();">
+
+</ngx-add-trainee>

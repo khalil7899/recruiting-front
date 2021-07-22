@@ -7,6 +7,11 @@ import { DetailsOffreComponent } from './details-offre/details-offre.component';
 import { StageListComponent } from './stage-list/stage-list.component';
 import { MesOffresComponent } from './mes-offres/mes-offres.component';
 import { CalendrierComponent } from './calendrier/calendrier.component';
+import { StatisticDashboardComponent } from './statistic-dashboard/statistic-dashboard.component';
+import { DashboardCandidatByOffreComponent } from './dashboard-candidat-by-offre/dashboard-candidat-by-offre.component';
+import { DashboardCandidatByDomainComponent } from './dashboard-candidat-by-domain/dashboard-candidat-by-domain.component';
+import { ListCandidatComponent } from './list-candidat/list-candidat.component';
+import { ListTraineeComponent } from './list-trainee/list-trainee.component';
 
 export const routes: Routes = [
   {
@@ -27,6 +32,14 @@ export const routes: Routes = [
     component: StageListComponent,
     },
     {
+      path: 'candidat-list',
+      component: ListCandidatComponent,
+    },
+    {
+      path: 'trainee-list',
+      component: ListTraineeComponent,
+    },
+    {
       path: 'job-details',
       component: DetailsOffreComponent,
     },
@@ -37,6 +50,18 @@ export const routes: Routes = [
     {
       path: 'calendrier',
       component: CalendrierComponent,
+    },
+    {
+      path: 'statistic-offre-par-domain',
+      component: StatisticDashboardComponent,
+    },
+    {
+      path: 'statistic-candidat-par-offre',
+      component: DashboardCandidatByOffreComponent,
+    },
+    {
+      path: 'statistic-candidat-par-domain',
+      component: DashboardCandidatByDomainComponent,
     },
 
 ];

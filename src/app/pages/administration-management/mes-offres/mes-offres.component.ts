@@ -13,6 +13,8 @@ export class MesOffresComponent implements OnInit {
   isRh: boolean = false;
   isCandidat: boolean = false;
   isTrainee: boolean = false;
+  displayDetailsJob:boolean=false;
+  job:any;
   user = {
     userId: null,
     userFirstName: null,
@@ -127,5 +129,10 @@ export class MesOffresComponent implements OnInit {
   {
     console.log("------detail offre-------");
     console.log(cand);
+    this.job = cand.jobOffre;
+    console.log("------details job-------");
+    console.log(this.job);
+    this.loadingOffre=false;
+    this.displayDetailsJob = true;
   }
 }

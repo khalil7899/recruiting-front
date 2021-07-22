@@ -16,7 +16,7 @@ export class UtilsService {
   // public static REMOTE_ADDRESS = 'http://212.129.62.79:8090/';
   public static REMOTE_ADDRESS = "http://localhost:8090";
 
-  public static REMOTE_ORGANISATION_URL = UtilsService.REMOTE_ADDRESS + 'bs-organisation-management/';
+  //public static REMOTE_ORGANISATION_URL = UtilsService.REMOTE_ADDRESS + 'bs-organisation-management/';
   public static API_AUTH = UtilsService.REMOTE_ADDRESS + "/api/auth/signin";
   public static API_USER = UtilsService.REMOTE_ADDRESS+ "/api/user";
   public static API_RH = UtilsService.REMOTE_ADDRESS + "/api/rh";
@@ -27,6 +27,7 @@ export class UtilsService {
   public static API_JOB = UtilsService.REMOTE_ADDRESS+ "/api/offre-job";
   public static API_CAND_STAGE = UtilsService.REMOTE_ADDRESS+ "/api/candstage";
   public static API_CAND_JOB = UtilsService.REMOTE_ADDRESS+ "/api/candjob";
+  public static API_STATISTIC = UtilsService.REMOTE_ADDRESS+ "/api/statistic";
 
   constructor(
     private toastrService: NbToastrService,

@@ -1,0 +1,50 @@
+<div class="card printCardZone" style="margin: auto; border-color:#E7E8E8 !important; border:solid">
+    <div class="ml-2" style="    margin: 1%;
+    ">
+        <div style="display: flex;">
+          <div class="mb-12 col-md-4 col-12">
+            <label for="fin" class="p-float-label" style="font-size: 13px"
+              >Date de début
+            </label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
+              <input
+                type="date"
+                placeholder="Date"
+                class="form-control p-field"
+                id="fin"
+                [(ngModel)]="candidat.startDate"
+                style="font-size: 13px"
+                (change)="candidatFn()"                >
+
+            </div>
+          </div>
+          <div class="mb-12 col-md-4 offset-md-1 col-12">
+            <label for="fin" class="p-float-label" style="font-size: 13px"
+              >Date de fin
+            </label>
+            <div class="p-inputgroup">
+              <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
+              <input
+                type="date"
+                placeholder="Date"
+                class="form-control p-field"
+                id="fin"
+                [(ngModel)]="candidat.endDate"
+                style="font-size: 13px"
+                (change)="candidatFn()"
+                [min]="candidat.startDate"
+                >
+
+            </div>
+          </div>
+
+        </div>
+        <br><br>
+        <div class="mb-12 col-md-12 col-12">
+          <div class="card">
+              <p-chart type="bar" [data]="candidatByOffreData" ></p-chart>
+          </div>
+        </div>
+    </div>
+</div> 

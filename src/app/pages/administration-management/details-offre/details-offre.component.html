@@ -188,11 +188,11 @@ padding: 10px 10px 10px 10px !important;
           <tr style="text-align: center; font-size: 15px">
             <th style="font-size: 13px; width: 10%;text-align: center;"></th>
             <th style="font-size: 13px; width: 20%;text-align: center;">Nom Complet</th>
-            <th style="font-size: 13px; width: 20%;text-align: center;">Diplome</th>
+            <th style="font-size: 13px; width: 15%;text-align: center;">Diplome</th>
             <th style="font-size: 13px; width: 15%;text-align: center;">Ecole </th>
             <th style="font-size: 13px; width: 10%;text-align: center;">Nombre d'éxperience </th>
             <th style="font-size: 13px; width: 15%;text-align: center;">Etat du candidature</th>
-            <th style="font-size: 13px; width: 10%;text-align: center;">Actions</th>
+            <th style="font-size: 13px; width: 15%;text-align: center;">Actions</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-cand>
@@ -232,8 +232,12 @@ padding: 10px 10px 10px 10px !important;
               <div *ngIf='cand.candJbEtat=="REFUSED"'>Refusé</div>
               <div *ngIf='cand.candJbEtat=="WAITING_MEET"'>
                 <span> En attente d'une reunion </span>
-                <span>planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>       
+                <span> planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>       
                      </div>
+                     <div *ngIf='cand.candJbEtat=="WAITING_CALL_PHONE"'>
+                      <span> En attente d'un appel téléphonique </span>
+                      <span >planifié le {{cand.meetingPhoneDate | date: 'dd-MM-yyyy'}}</span>       
+                           </div>
               <div *ngIf='cand.candJbEtat=="WAITING_DECISION"'>En attente d'une décision</div>
             </td>
             <td style="font-size: 13px;text-align: center;">
@@ -244,6 +248,8 @@ padding: 10px 10px 10px 10px !important;
                   ngbTooltip="Visualiser CV" class="pi pi-eye" style="margin-right: 7px; color: #4700ee"></i>
                 <i *ngIf='cand.candJbEtat!="ACCEPTED" && cand.candJbEtat!="REFUSED"' placement="top" ngbTooltip="Réserver RDV" class="pi pi-calendar"
                   style="margin-right: 7px; color: #4700ee" (click)="reserverRDV(cand)"></i>
+                  <i *ngIf='cand.candJbEtat!="ACCEPTED" && cand.candJbEtat!="REFUSED"' placement="top" ngbTooltip="Réserver RDV téléphonique" class="pi pi-calendar-plus"
+                  style="margin-right: 7px; color: #4700ee" (click)="reserverPhoneRDV(cand)"></i>
                 <i *ngIf='cand.candJbEtat!="ACCEPTED"' (click)="AccepterCand(cand)" placement="top" ngbTooltip="Accepter" class="pi pi-check" style="color: #4700ee"></i>
                 <i *ngIf='cand.candJbEtat=="ACCEPTED"' (click)="AnnuluerAccepterCand(cand)" placement="top" ngbTooltip="Annuluer acceptation" class="pi pi-chevron-circle-up" style="color: #4700ee"></i>
 
@@ -291,11 +297,11 @@ padding: 10px 10px 10px 10px !important;
           <tr style="text-align: center; font-size: 15px">
             <th style="font-size: 13px; width: 10%;text-align: center;"></th>
             <th style="font-size: 13px; width: 20%;text-align: center;">Nom Complet</th>
-            <th style="font-size: 13px; width: 20%;text-align: center;">Diplome</th>
+            <th style="font-size: 13px; width: 15%;text-align: center;">Diplome</th>
             <th style="font-size: 13px; width: 10%;text-align: center;">Ecole </th>
             <th style="font-size: 13px; width: 15%;text-align: center;">Niveau d'étude</th>
             <th style="font-size: 13px; width: 15%;text-align: center;">Etat du candidature</th>
-            <th style="font-size: 13px; width: 10%;text-align: center;">Actions</th>
+            <th style="font-size: 13px; width: 15%;text-align: center;">Actions</th>
           </tr>
         </ng-template>
         <ng-template pTemplate="body" let-cand>
@@ -337,6 +343,10 @@ padding: 10px 10px 10px 10px !important;
                 <span> En attente d'une reunion </span>
                 <span>planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>
               </div>
+              <div *ngIf='cand.candJbEtat=="WAITING_CALL_PHONE"'>
+                <span> En attente d'un appel téléphonique </span>
+                <span>planifié le {{cand.meetingPhoneDate | date: 'dd-MM-yyyy'}}</span>
+              </div>
               <div *ngIf='cand.candJbEtat=="WAITING_DECISION"'>En attente d'une décision</div>
             </td>
             <td style="font-size: 13px;text-align: center;">
@@ -346,6 +356,8 @@ padding: 10px 10px 10px 10px !important;
                   (click)="visualiserCV(cand.stagiaire.userCvUrl, cand.stagiaire.userFirstName, cand.stagiaire.userLastName)"
                   ngbTooltip="Visualiser CV" class="pi pi-eye" style="margin-right: 7px; color: #4700ee"></i>
                 <i *ngIf='cand.candJbEtat!="ACCEPTED" && cand.candJbEtat!="REFUSED"' placement="top" ngbTooltip="Réserver RDV" (click)="reserverRDV(cand)" class="pi pi-calendar"
+                  style="margin-right: 7px; color: #4700ee"></i>
+                  <i *ngIf='cand.candJbEtat!="ACCEPTED" && cand.candJbEtat!="REFUSED"' placement="top" ngbTooltip="Réserver RDV téléphonique" (click)="reserverPhoneRDV(cand)" class="pi pi-calendar-plus"
                   style="margin-right: 7px; color: #4700ee"></i>
                 <i *ngIf='cand.candJbEtat!="ACCEPTED"' (click)="AccepterCand(cand)" placement="top" ngbTooltip="Accepter" class="pi pi-check" style="color: #4700ee"></i>
                 <i *ngIf='cand.candJbEtat=="ACCEPTED"' (click)="AnnuluerAccepterCand(cand)" placement="top" ngbTooltip="Annuluer acceptation" class="pi pi-chevron-circle-up" style="color: #4700ee"></i>
@@ -403,6 +415,27 @@ padding: 10px 10px 10px 10px !important;
 
 			   <button pButton pRipple label="Confirmer" icon="pi pi-check" class="p-button-danger p-mr-2"
               (click)="effectuerRDV()"></button>
+
+            </div>
+          </ng-template>
+        </p-dialog>
+        
+        
+        <p-dialog header="Réserver RDV téléphonique" [(visible)]="modalReservePhoneRDV" [modal]="true" [style]="{width: '60vw'}"
+          [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+          <div style="margin-top: 5%;">
+        
+              <p-calendar [(ngModel)]="datePhoneMeeting" [showTime]="true" inputId="time" [inline]="true"></p-calendar>
+        
+          </div>
+          <ng-template pTemplate="footer">
+            <div style="margin-top: 20px;">
+              <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-secondary p-mr-2"
+                      (click)="modalReservePhoneRDV=false"></button>
+        
+                 <button pButton pRipple label="Confirmer" icon="pi pi-check" class="p-button-danger p-mr-2"
+                      (click)="effectuerPhoneRDV()"></button>
+        
 
     </div>
   </ng-template>

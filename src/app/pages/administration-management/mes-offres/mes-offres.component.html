@@ -80,3 +80,7 @@ Mes offres
     </ng-template>
   </p-table>
 </div> 
+
+<ngx-details-offre *ngIf="displayDetailsJob" [job]="job" (cancelDetails)="cancelDetailsHandler()">
+
+</ngx-details-offre>

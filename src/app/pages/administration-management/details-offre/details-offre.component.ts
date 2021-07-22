@@ -32,8 +32,10 @@ export class DetailsOffreComponent implements OnInit {
   @Output() cancelDetails = new EventEmitter<boolean>();
   displayViewCv: boolean = false;
   currentUserCV: any;
-  modalReserveRDV:any;
+  modalReserveRDV:any=false;
+  modalReservePhoneRDV:any=false;
   dateMeeting:Date=new Date();
+  datePhoneMeeting:Date=new Date();
   currentCand:any;
   constructor(private utilsService: UtilsService, private route: Router, private sanitizer: DomSanitizer, private datePipe: DatePipe) { }
   ngOnInit(): void {
@@ -205,6 +207,34 @@ export class DetailsOffreComponent implements OnInit {
     console.log("-----reserver RDV-----");
     this.modalReserveRDV=true;
     this.currentCand=cand;
+  }
+  reserverPhoneRDV(cand)
+  {
+    console.log("-----reserver RDV Phone-----");
+    this.modalReservePhoneRDV=true;
+    this.currentCand=cand;
+  }
+  effectuerPhoneRDV()
+  {
+    console.log("effectuer RDV")
+    console.log(this.currentCand);
+    console.log(this.datePhoneMeeting);
+    let datePhoneMeeting= this.datePipe.transform(this.datePhoneMeeting,'yyyy-MM-dd HH:mm:ss');
+    let url=UtilsService.API_CAND_JOB+"/update-phone-meeting/"+this.currentCand.idCandJob
+    if(this.datePhoneMeeting!=null)
+    {
+      url=url+'?meetingPhoneDate='+datePhoneMeeting;
+    }
+    this.utilsService.post(url,null).subscribe(response => {
+      this.ngOnInit();
+      this.modalReservePhoneRDV=false;
+      this.redirect();
+    }
+    ,error=>{
+      this.utilsService.showToast('danger',
+      'Erreur interne',
+      `Un erreur interne a été produit lors de la réservation téléphonique d\'un RDV`);
+    });
   }
   effectuerRDV()
   {

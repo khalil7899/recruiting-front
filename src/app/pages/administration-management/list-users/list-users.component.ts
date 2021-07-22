@@ -31,10 +31,6 @@ export class ListUsersComponent implements OnInit {
   saveNewUser(userObject) {
     const context = this;
     this.user=userObject.user;
-    /*this.mySimpleFormat = this.pipe.transform(this.user.userBirthDate, 'dd-MM-yyyy');
-    this.user.userBirthDate= this.mySimpleFormat;
-    this.mySimpleFormat =   this.pipe.transform(this.user.userHirringDate, 'dd-MM-yyyy');
-    this.user.userHirringDate = this.mySimpleFormat;*/
     this.UtilsService.post(UtilsService.API_RH, this.user).subscribe( response => {
        if(userObject.userPicture!=null){
         this.saveUserPicture(response.userId, userObject.userPicture);
