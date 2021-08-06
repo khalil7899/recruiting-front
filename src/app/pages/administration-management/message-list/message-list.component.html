@@ -1,0 +1,188 @@
+<p-tabView orientation="bottom">
+    <button pButton pRipple label="Nouveau Message" icon="pi pi-plus" class="primaryBtn"
+        (click)="showNewMessage=true"></button>
+    <br>
+    <p-tabPanel header="Boite de réception">
+        <p-table #dt [value]="messageReceivers" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+            [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [paginator]="true"
+            currentPageReportTemplate="" [filterDelay]="0"
+            [globalFilterFields]="['messageLabel','messageContenu','messageDate','messageUserSender','messageUserReceiver']">
+            <ng-template pTemplate="caption">
+                <div>
+                    <div class="p-d-flex p-ai-center p-jc-between" style=" width: 60%; display: inline-block;">
+                        <span class="p-input-icon-left" style="width: 100%">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" style="width: 93%;" class="searchInput, p-inputtext"
+                                (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Chercher un Message.." />
+                        </span>
+                    </div>
+
+
+                </div>
+
+
+
+
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr style="text-align: center; font-size: 13px;">
+                    <th style="text-align: center; font-size: 13px;width: 20%;"> Titre </th>
+                    <th style="text-align: center; font-size: 13px;width: 40%;"> Contenu </th>
+                    <th style="text-align: center; font-size: 13px;width: 20%;"> Envoyé par </th>
+                    <th style="text-align: center; font-size: 13px;width: 20%;"> Email </th>
+                    <th style="text-align: center; font-size: 13px;width: 20%;"> Date Message </th>
+                    <!-- <th style="width: 10%;font-size: 13px; text-align: center;">Actions</th> -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-message>
+                <tr class="p-selectable-row" style="text-align: center; font-size: 13px;">
+
+                    <td style="text-align: center;font-size: 13px;">
+                        {{message.messageLabel}}
+                    <td style="text-align: center;font-size: 13px;">
+                        <div style="margin-top: 15px;" [innerHTML]="message.messageContenu">
+                        </div>
+                    </td>
+                    <td style="text-align: center;font-size: 13px;">
+                        {{message.messageUserSender.userFirstName}} {{message.messageUserSender.userLastName}}
+                    </td>
+                    <td style="text-align: center;font-size: 13px;">
+                        {{message.messageUserSender.userEmail}} 
+                    </td>
+                    <td style="text-align: center;font-size: 13px;">
+                        {{message.messageDate | date: 'dd-MM-yyyy'}}
+                    </td>
+
+                    <!--      
+        <td style="text-align: center;">
+          <div>
+  
+            <i placement="top" ngbTooltip="Modifier" class="pi pi-pencil" style="margin-right: 7px;color: #6200ee" (click)="editUser(user)" [disabled]="checkBlockUser(user)" [ngClass]="{'disabled':  checkBlockUser(user)}"></i>
+            <i placement="top" ngbTooltip="Supprimer" class="pi pi-trash" style="color: #6200ee" (click)="deleteUser(user)"></i>
+          </div>
+        </td> -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr style="font-size: 13px">
+                    <td colspan="10" style="text-align: left !important;">Aucun Message recu!</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-tabPanel>
+    <p-tabPanel header="Message Envoyées">
+        <p-table #dt [value]="messageSenders" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+            [rows]="5" [showCurrentPageReport]="true" [rowsPerPageOptions]="[5,10,15]" [paginator]="true"
+            currentPageReportTemplate="" [filterDelay]="0"
+            [globalFilterFields]="['messageLabel','messageContenu','messageDate','messageUserSender','messageUserReceiver']">
+            <ng-template pTemplate="caption">
+                <div>
+                    <div class="p-d-flex p-ai-center p-jc-between" style=" width: 60%; display: inline-block;">
+                        <span class="p-input-icon-left" style="width: 100%">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" style="width: 93%;" class="searchInput, p-inputtext"
+                                (input)="dt.filterGlobal($event.target.value, 'contains')"
+                                placeholder="Chercher un Message.." />
+                        </span>
+                    </div>
+
+
+                </div>
+
+
+
+
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr style="text-align: center; font-size: 13px;">
+                    <th style="text-align: center; font-size: 13px;width: 20%;"> Titre </th>
+                    <th style="text-align: center; font-size: 13px;width: 40%;"> Contenu </th>
+                    <th  *ngIf="isRh==true" style="text-align: center; font-size: 13px;width: 20%;"> Envoyé à </th>
+                    <th  *ngIf="isRh==true" style="text-align: center; font-size: 13px;width: 20%;"> Email </th>
+                    <th style="text-align: center; font-size: 13px;width: 20%;"> Date Message </th>
+                    <!-- <th style="width: 10%;font-size: 13px; text-align: center;">Actions</th> -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-message>
+                <tr class="p-selectable-row" style="text-align: center; font-size: 13px;">
+
+                    <td style="text-align: center;font-size: 13px;">
+                        {{message.messageLabel}}
+                    <td style="text-align: center;font-size: 13px;">
+                        <div style="margin-top: 15px;" [innerHTML]="message.messageContenu">
+                        </div>
+                    </td>
+                    <td   *ngIf="isRh==true" style="text-align: center;font-size: 13px;">
+                        {{message.messageUserReceiver.userFirstName}} {{message.messageUserReceiver.userLastName}}
+                    </td>
+                    <td   *ngIf="isRh==true" style="text-align: center;font-size: 13px;">
+                        {{message.messageUserReceiver.userEmail}}
+                    </td>
+                    <td style="text-align: center;font-size: 13px;">
+                        {{message.messageDate | date: 'dd-MM-yyyy'}}
+                    </td>
+
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr style="font-size: 13px">
+                    <td colspan="10" style="text-align: left !important;">Aucun Message Envoyées!</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </p-tabPanel>
+
+</p-tabView>
+
+<p-dialog header="Nouveau Message" [(visible)]="showNewMessage" [modal]="true" [style]="{width: '50vw'}"
+    [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+
+    <ng-template pTemplate="body">
+        <div style="margin-top: 20px;">
+            <div>
+                <label for="groupName" class="p-float-label" style="font-size: 13px">Sujet</label>
+                <div class="p-inputgroup p-fluid">
+                    <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
+
+                    <input [ngClass]="{
+                    'is-invalid': message.messageLabel == ''
+                  }" type="text" class="form-control p-field" id="messageLabel" [(ngModel)]="message.messageLabel"
+                        style="font-size: 13px" />
+                </div>
+            </div>
+
+            <div *ngIf="isRh==true">
+                <label for="messageUserReceiver" class="p-float-label" style="font-size: 13px">Envoyé à </label>
+                <div class="p-inputgroup p-fluid">
+                    <span class="p-inputgroup-addon"><i class="pi pi-briefcase"></i></span>
+                    <select [ngClass]="{
+                        'is-invalid': message.messageUserReceiver == null
+                      }" [(ngModel)]="message.messageUserReceiver" class="browser-default custom-select"
+                        [compareWith]="compareUser">
+                        <option *ngFor="let user of users" [ngValue]="user">{{user.userEmail}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <label for="messageContenu" class="p-float-label" style="font-size: 13px">Contenu</label>
+                <div class="p-fluid md-12">
+                    <span class="p-inputgroup-addon"><i class="pi pi-ellipsis-h"></i></span>
+                    <p-editor [(ngModel)]="message.messageContenu" [style]="{'height':'220px'}"></p-editor>
+                </div>
+
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Annuler" icon="pi pi-times" class="btn btn-secondary"
+            (click)="showNewMessage = false"></button>
+
+        <button [disabled]="checkValidMessage()" [ngClass]="{'disabled':  checkValidMessage()}" pButton pRipple
+            label="Envoyer" icon="pi pi-check" class="primaryBtn" (click)="sendMessage()"
+            style="margin-left: 10px;"></button>
+    </ng-template>
+</p-dialog> 

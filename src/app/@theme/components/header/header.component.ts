@@ -169,7 +169,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.router.navigateByUrl("/recruiting/administration/calendrier");
     }
   }
-
+  messageRedirect()
+  {
+    this.router.navigateByUrl("/recruiting/administration/message-list")
+  }
   search(){
 
   }

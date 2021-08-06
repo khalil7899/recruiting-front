@@ -64,11 +64,12 @@ import { ListCandidatComponent } from './list-candidat/list-candidat.component';
 import { ListTraineeComponent } from './list-trainee/list-trainee.component';
 import { StatisticDashboardComponent } from './statistic-dashboard/statistic-dashboard.component';
 import {ChartModule} from 'primeng/chart';
+import { MessageListComponent } from './message-list/message-list.component';
 
 registerLocaleData(localeFr, 'fr', localeFrExtra);
 
 @NgModule({
-  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent, DetailsOffreComponent, StageListComponent, MesOffresComponent, CalendrierComponent, AddCandidatComponent, AddTraineeComponent, DashboardCandidatByDomainComponent, DashboardCandidatByOffreComponent, ListCandidatComponent, ListTraineeComponent, StatisticDashboardComponent],
+  declarations: [AddNewUserComponent,ListUsersComponent,ProfilComponent, AddJobComponent, JobListComponent, DetailsOffreComponent, StageListComponent, MesOffresComponent, CalendrierComponent, AddCandidatComponent, AddTraineeComponent, DashboardCandidatByDomainComponent, DashboardCandidatByOffreComponent, ListCandidatComponent, ListTraineeComponent, StatisticDashboardComponent, MessageListComponent],
   imports: [
     CalendarModule,
     PdfViewerModule,

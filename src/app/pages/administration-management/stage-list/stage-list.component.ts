@@ -95,8 +95,8 @@ export class StageListComponent implements OnInit {
   cancelDetailsHandler() {
     console.log("--------handler event--------");
     this.displayDetailsJob = false;
-    this.displayAddJob = false;
-    this.getAllJobs();
+    this.displayAddJob = true;
+    //this.getAllJobs();
 
   }
 }

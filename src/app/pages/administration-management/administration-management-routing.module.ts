@@ -12,6 +12,7 @@ import { DashboardCandidatByOffreComponent } from './dashboard-candidat-by-offre
 import { DashboardCandidatByDomainComponent } from './dashboard-candidat-by-domain/dashboard-candidat-by-domain.component';
 import { ListCandidatComponent } from './list-candidat/list-candidat.component';
 import { ListTraineeComponent } from './list-trainee/list-trainee.component';
+import { MessageListComponent } from './message-list/message-list.component';
 
 export const routes: Routes = [
   {
@@ -62,6 +63,10 @@ export const routes: Routes = [
     {
       path: 'statistic-candidat-par-domain',
       component: DashboardCandidatByDomainComponent,
+    },
+    {
+      path: 'message-list',
+      component: MessageListComponent,
     },
 
 ];
