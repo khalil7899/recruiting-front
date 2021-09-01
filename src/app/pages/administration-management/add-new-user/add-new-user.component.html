@@ -12,7 +12,8 @@ padding: 10px 10px 10px 10px !important;
   <span style="float:right;color:#900C3F" class="customer-badge ">crée le {{user.createdAt }} -- modifié le
     {{user.updatedAt }}</span>
   <div>
-    <span class="customer-badge status-label">{{user.userLogin}}</span></div>
+    <span class="customer-badge status-label">{{user.userLogin}}</span>
+  </div>
 </h4>
 
 <div style="width: 90%; margin: auto;margin-top:3%; border-color:#E7E8E8 !important; border:solid">
@@ -156,10 +157,10 @@ padding: 10px 10px 10px 10px !important;
                 <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
 
                 <input type="text" ng2TelInput [ng2TelInputOptions]="{initialCountry: 'tn'}"
-                       (hasError)="hasError($event)" (ng2TelOutput)="getNumber($event)"
-                       (intlTelInputObject)="telInputObject($event)" (countryChange)="onCountryChange($event)"
-                       class="form-control p-field" id="userPhoneNumber" [(ngModel)]="user.userPhoneNumber"
-                       (keyup)="CheckTelHasError=null" [ngClass]="{
+                (hasError)="hasError($event)" (ng2TelOutput)="getNumber($event)"
+                (intlTelInputObject)="telInputObject($event)" (countryChange)="onCountryChange($event)"
+                class="form-control p-field" id="userPhoneNumber" [(ngModel)]="user.userPhoneNumber"
+                (keyup)="CheckTelHasError=null" [ngClass]="{
     'is-valid': CheckTelHasError==true && user.userPhoneNumber!=null ,
     'is-invalid': CheckTelHasError==false && user.userPhoneNumber!= phone
 }" />
@@ -175,7 +176,7 @@ padding: 10px 10px 10px 10px !important;
                 <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
 
                 <input type="email" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" (keyup)="checkMail()" required
-                       class="form-control p-field" id="userEmail" [(ngModel)]="user.userEmail" [ngClass]="{
+                class="form-control p-field" id="userEmail" [(ngModel)]="user.userEmail" [ngClass]="{
                     'is-invalid' : checkEmail== false ,
             'is-valid': checkEmail== true && user.userEmail!=null
           }">
@@ -189,7 +190,7 @@ padding: 10px 10px 10px 10px !important;
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
                 <select [(ngModel)]="user.userPays" class="browser-default custom-select"
-                        (change)="changeCountry_($event.target.value)">
+                  (change)="changeCountry_($event.target.value)">
                   <option *ngFor="let count of countriesList"> {{count.name}} </option>
                 </select>
               </div>
@@ -214,7 +215,8 @@ padding: 10px 10px 10px 10px !important;
               <label for="userNRue" class="p-float-label">N° et Rue <strong style="color: #0b2089;">*</strong></label>
               <div class="p-inputgroup">
                 <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
-                <textarea type="text" rows="2" class="form-control p-field" id="userNRue" [(ngModel)]="user.userNRue" [ngClass]="{
+                <textarea type="text" rows="2" class="form-control p-field" id="userNRue" [(ngModel)]="user.userNRue" 
+                [ngClass]="{
 
                   'is-valid': user.userNRue != null && user.userNRue !== ''
                 }"></textarea>
@@ -240,7 +242,8 @@ padding: 10px 10px 10px 10px !important;
                 </label>
                 <div class="p-inputgroup">
                   <span class="p-inputgroup-addon"><i class="pi pi-calendar"></i></span>
-                  <input type="date" class="form-control p-field" id="userHirringDate" [(ngModel)]="user.userHirringDate">
+                  <input type="date" class="form-control p-field" id="userHirringDate" 
+                  [(ngModel)]="user.userHirringDate">
                 </div>
               </div>
 
@@ -256,7 +259,7 @@ padding: 10px 10px 10px 10px !important;
                 <div class="p-inputgroup">
                   <span class="p-inputgroup-addon"><i class="pi pi-bars"></i></span>
                   <input type="text" class="form-control p-field" id="userRegistrationNumber"
-                         [(ngModel)]="user.userRegistrationNumber" [ngClass]="{
+                    [(ngModel)]="user.userRegistrationNumber" [ngClass]="{
             'is-valid': user.userRegistrationNumber != null && user.userRegistrationNumber !== ''
           }">
                 </div>
@@ -279,14 +282,16 @@ padding: 10px 10px 10px 10px !important;
               </div>
               <div class="mb-1 col-md-6 col-12 p-field">
                 <label for="rhRang" class="p-float-label">
-                  Rang <strong style="color: #0b2089;">*</strong>
+                  Catégorie* <strong style="color: #0b2089;">*</strong>
                 </label>
                 <div class="p-inputgroup">
                   <span class="p-inputgroup-addon"><i class="pi pi-bars"></i></span>
-                  <input type="text" class="form-control p-field" id="rhRang"
-                         [(ngModel)]="user.rhRang" [ngClass]="{
-            'is-valid': user.rhRang != null && user.rhRang !== ''
-          }">
+                  <select [(ngModel)]="user.rhCategorie" class="browser-default custom-select">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+
+                  </select>
                 </div>
               </div>
             </div>
@@ -298,7 +303,7 @@ padding: 10px 10px 10px 10px !important;
         <p-panel header="Identifants d'accés" [toggleable]="false">
           <div class="p-grid p-fluid">
             <div style="display: flex">
-              <div class="mb-1 col-md-6 col-12">
+              <div class="mb-1 col-md-5 col-12">
                 <label for="userLogin" class="p-float-label">Login <strong style="color: #0b2089;">*</strong></label>
                 <div class="p-inputgroup">
                   <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
@@ -311,7 +316,7 @@ padding: 10px 10px 10px 10px !important;
 
 
 
-              <div class="mb-1 col-md-4 col-12">
+              <div class="mb-1 col-md-5 col-12">
                 <label for="userPassword" class="p-float-label">Mot de passe <strong
                     style="color: #0b2089;">*</strong></label>
                 <div class="p-inputgroup">
@@ -326,7 +331,7 @@ padding: 10px 10px 10px 10px !important;
               <div class="mb-1 col-md-2 col-12" style="padding-top: 18px;">
                 <label for="userPassword" class="p-float-label"></label>
                 <div style="width: 80px;float: right;" class="p-inputgroup">
-                  <button pButton pRipple label="Générer" style=" padding-top: 18px;
+                  <button pButton pRipple label="Générer" style=" margin-left: 20px; padding-top: 18px;
                   padding: 5px;
                   width: 62px;" class="primaryBtn" (click)="generatePassword()" placement="top"
                     ngbTooltip="Générer un mot de passe"></button>

@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UIChart } from 'primeng/chart';
 import { UtilsService } from '../../../services/utils.service';
 
 @Component({
@@ -19,6 +20,9 @@ export class DashboardCandidatByOffreComponent implements OnInit {
     startDate: this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
     endDate: this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
   };
+  @ViewChild("linechart1") chart1: UIChart
+  @ViewChild("linechart2") chart2: UIChart
+  @ViewChild("linechart3") chart3: UIChart
   constructor(private utilsService: UtilsService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -54,6 +58,7 @@ export class DashboardCandidatByOffreComponent implements OnInit {
       };
       this.candidatByOffreData.labels = this.offreLabels;
       this.candidatByOffreData.datasets[0]["data"] = this.candidatTotal;
+     
       this.offreLabels = [];
       this.candidatTotal = []
       this.getCandidatRetenuByOffre();
@@ -62,6 +67,7 @@ export class DashboardCandidatByOffreComponent implements OnInit {
       (error) => {
         console.log("error");
       })
+      this.chart1.refresh();
   }
   getCandidatRetenuByOffre() {
     this.utilsService.get(UtilsService.API_STATISTIC + "/candidat-retenu/" + this.candidat.startDate + '/' + this.candidat.endDate).subscribe(data => {
@@ -79,14 +85,14 @@ export class DashboardCandidatByOffreComponent implements OnInit {
       });
       this.candidatByOffreData.datasets[1]["data"] = this.candidatRetenu;
       this.candidatRetenu = []
-      console.log(this.candidatByOffreData)
-   this.candidatOffreRetenu=[];
-   this.candidatOffreTotal=[];
-
+      console.log(this.candidatByOffreData);
+      this.candidatOffreRetenu=[];
+      this.candidatOffreTotal=[];
     },
       (error) => {
         console.log("error");
       })
+      this.chart2.refresh();
   }
    getNbCandidatByOffre(jobOffre:any): number
   {
@@ -100,6 +106,7 @@ export class DashboardCandidatByOffreComponent implements OnInit {
         console.log(index);
         console.log("---test-----");
         console.log(this.candidatOffreRetenu[index].jobOffre.jobOffreId==jobOffre.jobOffreId);
+        
         if(this.candidatOffreRetenu[index].jobOffre.jobOffreId==jobOffre.jobOffreId)
         {
           return index;
@@ -120,6 +127,7 @@ export class DashboardCandidatByOffreComponent implements OnInit {
     //   }
     // });
     // return -1;
+    this.chart3.refresh();
   }
   candidatFn() {
     this.getCandidatTotalByOffre();

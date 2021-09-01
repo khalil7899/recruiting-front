@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UIChart } from 'primeng/chart';
 import { UtilsService } from '../../../services/utils.service';
 
 @Component({
@@ -14,6 +15,9 @@ export class StatisticDashboardComponent implements OnInit {
   dataStage: any;
   labelsStage=[];
   datasetsStage=[];
+  @ViewChild("linechart1") chart1: UIChart
+  @ViewChild("linechart2") chart2: UIChart
+
   constructor(private utilsService: UtilsService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -68,6 +72,8 @@ export class StatisticDashboardComponent implements OnInit {
       });
       this.dataJob.labels=this.labelsJob;
       this.dataJob.datasets[0]["data"]=this.datasetsJob;
+      this.chart1.refresh();
+
       this.labelsJob=[];
       this.datasetsJob=[]
      },
@@ -86,6 +92,7 @@ export class StatisticDashboardComponent implements OnInit {
       });
       this.dataStage.labels=this.labelsStage;
       this.dataStage.datasets[0]["data"]=this.datasetsStage;
+      this.chart2.refresh();
       this.labelsStage=[];
       this.datasetsStage=[]
      },

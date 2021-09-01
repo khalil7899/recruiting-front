@@ -210,12 +210,21 @@ select {
   padding: 0.5rem 1rem !important;
 }
 
+.nb-theme-default nb-user.shape-round .user-picture {
+  border-radius: 50%;
+  color: white;
+}
 
 nb-auth-block {
   max-width: 100% !important;
 }
 
 ngx-login nb-layout-column {
+  padding: 0 0 0 0 !important;
+  overflow:  hidden !important;
+}
+
+ngx-register nb-layout-column {
   padding: 0 0 0 0 !important;
   overflow:  hidden !important;
 }

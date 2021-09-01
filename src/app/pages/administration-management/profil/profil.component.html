@@ -377,7 +377,7 @@ padding: 10px 10px 10px 10px !important;
         <p-panel header="Importer CV" [toggleable]="false">
           <div class="p-grid p-fluid">
             <div style="display: flex">
-              <div class="mb-1 col-md-4 col-12" style="padding-top: 18px;">
+              <div class="mb-1 col-md-3 col-12" style="padding-top: 18px;">
                 <label>
                   <input type="file" (change)="selectFile($event)" hidden>
                   <span pButton pRipple label="Choisir" icon="pi pi-upload" class="btn btn-secondary"></span>
@@ -385,7 +385,7 @@ padding: 10px 10px 10px 10px !important;
                 </label>
               </div>
               
-              <div class="mb-1 col-md-8 col-12" style="padding-top: 18px;">
+              <div class="mb-1 col-md-5 col-12" style="padding-top: 18px;">
                
                 <div class="p-inputgroup">
                   <span class="p-inputgroup-addon"><i class="pi pi-tag"></i></span>
@@ -393,6 +393,13 @@ padding: 10px 10px 10px 10px !important;
                     [(ngModel)]="user.userCvUrl">
                 </div>
 
+              </div>
+              <div class="mb-1 col-md-4  col-12" style="padding-top: 18px;">
+                <label>
+                  <button pButton pRipple type="button" label="Supprimer compte" class="p-button-danger"
+                  (click)="deleteCompte()"></button>
+
+                </label>
               </div>
 
 
@@ -427,3 +434,21 @@ padding: 10px 10px 10px 10px !important;
   </div>
 
 </div>
+
+
+
+<p-dialog header="Supprimer le compte" [(visible)]="displayDeleteUser" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <br>
+  Voulez-vous supprimer votre compte?
+  <ng-template pTemplate="footer">
+    <div style="margin-top: 20px;">
+      <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-secondary p-mr-2"
+              (click)="displayDeleteUser=false"></button>
+
+			   <button pButton pRipple label="Supprimer" icon="pi pi-check" class="p-button-danger p-mr-2"
+              (click)="deleteCompteCurrentUser()"></button>
+
+    </div>
+  </ng-template>
+</p-dialog>

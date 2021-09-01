@@ -33,7 +33,7 @@ padding: 10px 10px 10px 10px !important;
                     <span  *ngIf="job.jobStatus=='OPENED'" class="customer-badge" style="margin-left:70px" [ngClass]="{'status-active':true}">Ouvert</span>
                     <span *ngIf="job.jobStatus=='CLOSED'" class="customer-badge" style="margin-left:70px" [ngClass]="{'status-active':true}">Fermé</span>
                     <span *ngIf="job.jobStatus=='CHOOSED'"  class="customer-badge" style="margin-left:70px" [ngClass]="{'status-active':true}">Candidature retenue</span>
-                    <span *ngIf="job.jobStatus=='IN_PROGRESS'" class="customer-badge" style="margin-left:70px" [ngClass]="{'status-active':true}">En</span>
+                    <span *ngIf="job.jobStatus=='IN_PROGRESS'" class="customer-badge" style="margin-left:70px" [ngClass]="{'status-active':true}">En cours</span>
 
                 </div>
             </div>
@@ -54,6 +54,7 @@ padding: 10px 10px 10px 10px !important;
 
 </ngx-add-job>
 
-<ngx-details-offre *ngIf="displayDetailsJob" [job]="job" (cancelDetails)="cancelDetailsHandler()">
+<ngx-details-offre *ngIf="displayDetailsJob" [job]="job" (cancelDetails)="cancelDetailsHandler()" 
+ (cancelDetailsJob)="cancelDetailsJobHandler()" (cancelCandidatures)="cancelCandidaturesHandler()">
 
 </ngx-details-offre>

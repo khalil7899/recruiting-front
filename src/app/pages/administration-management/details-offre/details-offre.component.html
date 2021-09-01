@@ -5,7 +5,14 @@ padding: 10px 10px 10px 10px !important;
     color: #222b45;margin-left: 10px">
   Détails offre
   <div style="float: right;">
-
+    <div style="display: flex">
+      <button *ngIf="job.contractType == 'STAGE'" pButton pRipple label="Retour"
+          class="btn btn-secondary btn_stepper next" (click)="retourStage()"
+          style="margin-right: 10px;height:37px;"></button>
+      <button *ngIf="job.contractType != 'STAGE'" pButton pRipple label="Retour"
+          class="btn btn-secondary btn_stepper next" (click)="retourJob()"
+          style="margin-right: 10px;height:37px;"></button>
+  </div>
   </div>
 </h4>
 
@@ -80,8 +87,8 @@ padding: 10px 10px 10px 10px !important;
           <button *ngIf="isTrainee==true || isCandidate==true" pButton pRipple label="Postuler"
             class="btn btn-secondary btn_stepper next" (click)="postuler()"
             style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
-          <button *ngIf="isRh==true" pButton pRipple label="Editer" class="btn btn-secondary btn_stepper next"
-            (click)="editer()" style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
+          <!--<button *ngIf="isRh==true" pButton pRipple label="Editer" class="btn btn-secondary btn_stepper next"
+            (click)="editer()" style="margin-right: 15px;height:37px;margin-top: 5px;"></button>-->
         </div>
       </div>
     </div>
@@ -158,7 +165,7 @@ padding: 10px 10px 10px 10px !important;
             <button *ngIf="isTrainee==true || isCandidate==true" pButton pRipple label="Postuler"
               class="btn btn-secondary btn_stepper next" (click)="postuler()"
               style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
-            <button *ngIf="isRh==true" pButton pRipple label="Editer" class="btn btn-secondary btn_stepper next"
+            <button pButton pRipple label="Editer" class="btn btn-secondary btn_stepper next"
               (click)="editer()" style="margin-right: 15px;height:37px;margin-top: 5px;"></button>
           </div>
         </div>
@@ -232,11 +239,11 @@ padding: 10px 10px 10px 10px !important;
               <div *ngIf='cand.candJbEtat=="REFUSED"'>Refusé</div>
               <div *ngIf='cand.candJbEtat=="WAITING_MEET"'>
                 <span> En attente d'une reunion </span>
-                <span> planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>       
+                <span> planifié le {{cand.meetingDate  | date: 'dd-MM-yyyy hh:mm:ss'}}</span>       
                      </div>
                      <div *ngIf='cand.candJbEtat=="WAITING_CALL_PHONE"'>
                       <span> En attente d'un appel téléphonique </span>
-                      <span >planifié le {{cand.meetingPhoneDate | date: 'dd-MM-yyyy'}}</span>       
+                      <span >planifié le {{cand.meetingPhoneDate  | date: 'dd-MM-yyyy hh:mm:ss'}}</span>       
                            </div>
               <div *ngIf='cand.candJbEtat=="WAITING_DECISION"'>En attente d'une décision</div>
             </td>
@@ -341,11 +348,11 @@ padding: 10px 10px 10px 10px !important;
               <div *ngIf='cand.candJbEtat=="REFUSED"'>Refusé</div>
               <div *ngIf='cand.candJbEtat=="WAITING_MEET"'>
                 <span> En attente d'une reunion </span>
-                <span>planifié le {{cand.meetingDate | date: 'dd-MM-yyyy'}}</span>
+                <span>planifié le {{cand.meetingDate | date: 'dd-MM-yyyy hh:mm:ss'}}</span>
               </div>
               <div *ngIf='cand.candJbEtat=="WAITING_CALL_PHONE"'>
                 <span> En attente d'un appel téléphonique </span>
-                <span>planifié le {{cand.meetingPhoneDate | date: 'dd-MM-yyyy'}}</span>
+                <span>planifié le {{cand.meetingPhoneDate | date: 'dd-MM-yyyy hh:mm:ss'}}</span>
               </div>
               <div *ngIf='cand.candJbEtat=="WAITING_DECISION"'>En attente d'une décision</div>
             </td>

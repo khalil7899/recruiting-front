@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   domains:any;
   domain:any;
   inputsearch:any;
+  isAdmin:boolean=false;
 
   themes = [
     {
@@ -46,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu = [];
-  userMenuAd = [ { title: 'Mon Profile', icon: 'person-outline'}, { title: 'Mon Calendrier', icon: 'calendar-outline' },{ title: 'Déconnecter', icon: 'arrow-circle-left-outline' } ];
+  userMenuAd = [ { title: 'Déconnecter', icon: 'arrow-circle-left-outline' } ];
 
   userMenuCond = [ { title: 'Mon Profile', icon: 'person-outline'},{ title: 'toutes les Offres', icon: 'briefcase-outline' }, { title: 'Mes Offres', icon: 'briefcase-outline' }
   , { title: 'Mon Calendrier', icon: 'calendar-outline' },{ title: 'Déconnecter', icon: 'arrow-circle-left-outline' } ];
@@ -81,6 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.currentTheme = this.themeService.currentTheme;
     this.domains=this.getDomainsList();
     console.log(this.domains);
+    this.isAdmin=localStorage.getItem("userRole")==="ADMINISTRATOR";
     this.user= this.userService.getCurrentUser();
     let firstName=localStorage.getItem("userFirstName");
     let firstLastName=localStorage.getItem("userLastName");
@@ -153,8 +155,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     {
       this.router.navigateByUrl("/recruiting/administration/profil");
     }
-     else if(item==="toutes les Offres")
+     else if(item==="toutes les Offres" && localStorage.getItem("userRole")==="TRAINEE")
   {
+    
+    this.router.navigateByUrl("/recruiting/administration/stages-list");
+ 
+  }  
+  else if(item==="toutes les Offres" && localStorage.getItem("userRole")==="CANDIDATE")
+  {
+    
     this.router.navigateByUrl("/recruiting/administration/job-list");
  
   }  
@@ -174,6 +183,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl("/recruiting/administration/message-list")
   }
   search(){
+    console.log("---------domain-----------");
+    console.log(this.domain);
+    if(localStorage.getItem("userRole")==="TRAINEE"){
+      this.router.navigateByUrl("/recruiting/administration/stages-list/"+this.domain.domaineId);
+
+    }
+    else if(localStorage.getItem("userRole")==="CANDIDATE"){
+      this.router.navigateByUrl("/recruiting/administration/job-list/"+this.domain.domaineId);
+
+    }
 
   }
   

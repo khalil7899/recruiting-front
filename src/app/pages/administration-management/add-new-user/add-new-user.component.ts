@@ -34,7 +34,7 @@ export class AddNewUserComponent implements OnInit {
     userTypeContract:null,
     company:null,
     businessUnit: null,
-    rhRang: null,
+    rhCategorie: null,
 
   };
   imagePath;
@@ -188,7 +188,7 @@ export class AddNewUserComponent implements OnInit {
       userTypeContract:null,
       company:null,
       businessUnit: null,
-      rhRang: null,
+      rhCategorie: null,
     };
   }
   checkMail() {

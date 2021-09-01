@@ -33,6 +33,14 @@ export const routes: Routes = [
     component: StageListComponent,
     },
     {
+      path: 'job-list/:domain',
+      component: JobListComponent,
+    },
+    {
+      path: 'stages-list/:domain',
+      component: StageListComponent,
+    },
+    {
       path: 'candidat-list',
       component: ListCandidatComponent,
     },

@@ -4,6 +4,8 @@ import { UtilsService } from '../../../services/utils.service';
 import Swal from 'sweetalert2'
 import { DomSanitizer } from '@angular/platform-browser';
 import { DatePipe } from '@angular/common';
+import { StageListComponent } from '../stage-list/stage-list.component';
+import Calendar from '@fullcalendar/core/Calendar';
 @Component({
   selector: 'ngx-details-offre',
   templateUrl: './details-offre.component.html',
@@ -30,6 +32,9 @@ export class DetailsOffreComponent implements OnInit {
     "candJbEtat": null
   };
   @Output() cancelDetails = new EventEmitter<boolean>();
+  @Output() cancelDetailsJob = new EventEmitter<boolean>();
+  @Output() cancelCandidatures = new EventEmitter<boolean>();
+
   displayViewCv: boolean = false;
   currentUserCV: any;
   modalReserveRDV:any=false;
@@ -228,7 +233,10 @@ export class DetailsOffreComponent implements OnInit {
     this.utilsService.post(url,null).subscribe(response => {
       this.ngOnInit();
       this.modalReservePhoneRDV=false;
-      this.redirect();
+      this.utilsService.showToast('success',
+      'RDV effectuée',
+      `RDV a été effectuée avec success`);
+      this.cancelCandidatures.emit(true);
     }
     ,error=>{
       this.utilsService.showToast('danger',
@@ -250,7 +258,11 @@ export class DetailsOffreComponent implements OnInit {
     this.utilsService.post(url,null).subscribe(response => {
       this.ngOnInit();
       this.modalReserveRDV=false;
-      this.redirect();
+      this.utilsService.showToast('success',
+      'RDV effectuée',
+      `RDV a été effectuée avec success`);
+      this.cancelCandidatures.emit(true);
+
     }
     ,error=>{
       this.utilsService.showToast('danger',
@@ -268,7 +280,7 @@ export class DetailsOffreComponent implements OnInit {
       this.utilsService.showToast('success',
       'Acceptation effectuée',
       `la candidature a été accepte avec success`);
-      this.redirect();
+      this.cancelCandidatures.emit(true);
 
     }
     ,error=>{
@@ -288,7 +300,7 @@ export class DetailsOffreComponent implements OnInit {
       this.utilsService.showToast('success',
       'annuluation de l\'acceptation a été effectuée',
       `la candidature a été annuluer avec success`);
-      this.redirect();
+      this.cancelCandidatures.emit(true);
     }
     ,error=>{
       this.utilsService.showToast('danger',
@@ -309,7 +321,7 @@ export class DetailsOffreComponent implements OnInit {
       this.utilsService.showToast('success',
       'le refus a été effectuée',
       ` le refus a été effectuée avec success`);
-      this.redirect();
+      this.cancelCandidatures.emit(true);
     }
     ,error=>{
       this.utilsService.showToast('danger',
@@ -328,7 +340,7 @@ export class DetailsOffreComponent implements OnInit {
       this.utilsService.showToast('success',
       'le refus a été annuler',
       ` le refus a été annuluer avec success`);
-      this.redirect();
+      this.cancelCandidatures.emit(true);
     }
     ,error=>{
       this.utilsService.showToast('danger',
@@ -340,5 +352,15 @@ export class DetailsOffreComponent implements OnInit {
   redirect()
   {
     this.cancelDetails.emit(true);
+  }
+  retourStage(){
+    this.cancelDetailsJob.emit(true);
+
+    
+  }
+  retourJob(){
+    this.cancelDetailsJob.emit(true);
+
+
   }
 }

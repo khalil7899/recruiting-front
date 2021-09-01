@@ -94,7 +94,7 @@
   
   .loginblock {
     float: left;
-    // margin-top: 5%;
+    // margin-top: 10%;
     margin-left: 8%;
     margin-right: 8%;
   }
@@ -140,7 +140,12 @@
     .loginblock {
       display: inline;
     }
-  
+
+    .loginblock {
+      margin-top: 20%;
+      margin-left: 5%;
+      margin-right: 5%;
+    }
     nb-layout-column:last-child {
       flex: none !important;
       // background: #f4f4f7;

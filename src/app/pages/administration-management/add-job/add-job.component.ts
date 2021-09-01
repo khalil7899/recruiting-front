@@ -60,9 +60,17 @@ export class AddJobComponent implements OnInit {
        UtilsService.API_JOB,this.job
      ).subscribe(
        (response) => {
+        if(this.job.jobOffreId!=null)
+        {
+         this.utilsService.showToast('success',
+         'Offre modifiée avec succés',
+         `L'offre  ${this.job.jobOffreLabel} a été modifiée avec succcés`);
+        }
+        else{
       this.utilsService.showToast('success',
          'Offre ajoutée avec succés',
          `L'offre  ${this.job.jobOffreLabel} a été ajoutée avec succcés`);
+        }
          this.initJob();
          this.cancelEvent.emit();
        },

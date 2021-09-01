@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { UIChart } from 'primeng/chart';
 import { UtilsService } from '../../../services/utils.service';
 
 @Component({
@@ -11,6 +12,8 @@ export class DashboardCandidatByDomainComponent implements OnInit {
   dataCandidat: any;
   labelsCandidat=[];
   datasetsCandidat=[];
+  @ViewChild("linechart") chart: UIChart
+
   constructor(private utilsService: UtilsService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -47,6 +50,7 @@ export class DashboardCandidatByDomainComponent implements OnInit {
       });
       this.dataCandidat.labels=this.labelsCandidat;
       this.dataCandidat.datasets[0]["data"]=this.datasetsCandidat;
+      this.chart.refresh();
       this.labelsCandidat=[];
       this.datasetsCandidat=[]
      },

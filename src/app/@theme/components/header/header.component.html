@@ -19,9 +19,9 @@
        placeholder="Chercher...">
     </div>
     <div class="mb-1 col-md-4 col-12 p-field">
-      <nb-select [(selected)]="domain" id="domain" name="domain" placeholder="Domaine" style="width: 100%;">
-      <nb-option value="null">Domaine</nb-option>
-      <nb-option *ngFor="let d of domains;" value="d.domaineLabel">{{d.domaineLabel}}</nb-option>
+      <nb-select [(selected)]="domain" id="domain" name="domain" placeholder="Domaine" style="width: 100%;" >
+        <nb-option value="null">Domaine</nb-option>
+        <nb-option *ngFor="let d of domains;" [value]="d">{{d.domaineLabel}}</nb-option>
 
     </nb-select>
   </div>
@@ -33,15 +33,8 @@
 
 <div class="header-container">
   <nb-actions size="small">
-<!--
-    <nb-action class="control-item">
-      <nb-search type="rotate-layout"></nb-search>
-    </nb-action>
-    -->
-    <!--
-    <nb-action class="control-item" icon="email-outline"></nb-action>
-    -->
-    <nb-action class="control-item" icon="bell-outline" (click)="messageRedirect()"></nb-action>
+
+    <nb-action *ngIf="!isAdmin" class="control-item" icon="bell-outline" (click)="messageRedirect()"></nb-action>
     <nb-action class="user-action" *nbIsGranted="['view', 'user']" >
       <nb-user [nbContextMenu]="userMenu"
                [onlyPicture]="userPictureOnly"

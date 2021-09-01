@@ -16,8 +16,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/recruiting/administration/stages-list',
         icon: 'layers-outline',
       },
-      {
-        title: 'Emploies',
+      {//changed
+        title: 'Emplois',
         link: '/recruiting/administration/job-list',
         icon: 'layers-outline',
       },

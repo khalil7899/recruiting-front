@@ -53,8 +53,7 @@ ngOnInit(){
       (data: any) => {
         this.utilsService.showToast('success',
         'Inscription faite',
-        `L\'inscription d'un nouveau utilisateur à étè faite avec success`);
-        this.router.navigateByUrl("/auth/login");
+        `L\'inscription à été faite avec success, vérifier votre courrier électronique`);
       },
       (error) => {
         console.log(error);
