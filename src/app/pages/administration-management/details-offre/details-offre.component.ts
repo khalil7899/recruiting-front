@@ -77,7 +77,8 @@ export class DetailsOffreComponent implements OnInit {
         this.getCandidat();
         this.candidature.candidat = this.user;
         this.candidature.jobOffre = this.job;
-        console.log("------candidature------");
+        this.candidature.jobOffre["candJobs"]=[];
+        console.log("candidature à postuler");
         console.log(this.candidature);
         this.utilsService.post(UtilsService.API_CAND_JOB, this.candidature).subscribe((Response) => {
           console.log("----success-----");
@@ -86,6 +87,8 @@ export class DetailsOffreComponent implements OnInit {
             '',
             'success'
           )
+          this.route.navigateByUrl("recruiting/administration/mes-offres")
+
         }, (error) => {
           console.log("----success-----");
 
@@ -95,6 +98,7 @@ export class DetailsOffreComponent implements OnInit {
             'error'
           )
         })
+
       }
       else {
         Swal.fire('Compléter votre profil SVP!', '', 'warning')
@@ -113,14 +117,18 @@ export class DetailsOffreComponent implements OnInit {
         this.getTrainee();
         this.candidature.stagiaire = this.user;
         this.candidature.jobOffre = this.job;
+        this.candidature.jobOffre["candJobs"]=[];
+        console.log("candidature à postuler");
+        console.log(this.candidature);
         this.utilsService.post(UtilsService.API_CAND_JOB, this.candidature).subscribe((Response) => {
-          console.log("----success-----");
-          console.log("----success-----");
+          console.log("----success postule-----");
           Swal.fire(
             'Candidature envoyée!',
             '',
             'success'
           )
+          this.route.navigateByUrl("recruiting/administration/mes-offres")
+
         }, (error) => {
           console.log("----success-----");
           Swal.fire(
@@ -170,7 +178,8 @@ export class DetailsOffreComponent implements OnInit {
     });
   }
   verifCandidate(): boolean {
-    return this.verifUser() && this.candidate.candidatDiplome != null && this.candidate.candidatEcole != null && this.candidate.candidatAnneeDiplome != null
+   
+     return this.verifUser() && this.candidate.candidatDiplome != null && this.candidate.candidatEcole != null && this.candidate.candidatAnneeDiplome != null
       && this.candidate.candidatNumberExperience != null && this.candidate.candidatFiliere != null;
   }
   verifTrainee(): boolean {
@@ -181,7 +190,7 @@ export class DetailsOffreComponent implements OnInit {
     return this.user.userId != null && this.user.userFirstName != null && this.user.userLastName != null && this.user.userPictureUrl != null
       && this.user.userBirthDate != null && this.user.userBirthCity != null && this.user.userBirthCountry != null && this.user.userCvUrl != null && this.user.userNRue != null
       && this.user.userPays != null && this.user.userCity != null && this.user.userGender != null && this.user.userCivilStatus != null && this.user.userAddress != null
-      && this.user.userEmail != null && this.user.userPhoneNumber != null && this.user.userLogin != null && this.user.userPassword != null && this.user.userRoles != null && this.user.userRole != null;
+      && this.user.userEmail != null && this.user.userPhoneNumber != null && this.user.userLogin != null && this.user.userPassword != null && this.user.userRole != null;
   }
   getCandidat() {
     var candidateUser: any = this.user;

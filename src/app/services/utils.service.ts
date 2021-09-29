@@ -13,10 +13,8 @@ import { DatePipe } from "@angular/common";
   providedIn: "root",
 })
 export class UtilsService {
-  // public static REMOTE_ADDRESS = 'http://212.129.62.79:8090/';
   public static REMOTE_ADDRESS = "http://localhost:8090";
 
-  //public static REMOTE_ORGANISATION_URL = UtilsService.REMOTE_ADDRESS + 'bs-organisation-management/';
   public static API_AUTH = UtilsService.REMOTE_ADDRESS + "/api/auth/signin";
   public static API_USER = UtilsService.REMOTE_ADDRESS+ "/api/user";
   public static API_RH = UtilsService.REMOTE_ADDRESS + "/api/rh";
@@ -89,24 +87,5 @@ export class UtilsService {
 
   getDate(date: any, format: string): string {
     return this.datePipe.transform(date, format, 'Africa/Tunis');
-  }
-  convertAmountToString(initialAmount: string) : string {
-
-    let amount = '';
-    if (initialAmount.includes('.')) {
-      const array: any[] = initialAmount.split('.');
-      if (array[1].length === 1) {
-        array[1] = "." + array[1] + "00";
-        return array[0] + array[1];
-      } else if (array[1].length === 2) {
-        array[1] = "." + array[1] + "0";
-        return array[0] + array[1];
-      }
-      return array[0] + '.' + array[1];
-    } else {
-      amount = initialAmount + '.000';
-      return amount;
-    }
-
   }
 }

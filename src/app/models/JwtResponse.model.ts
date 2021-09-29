@@ -6,7 +6,7 @@ export class JwtResponse {
   username: string;
 
 
-  roles: string[] ;
+  //roles: string[] ;
 
   userFirstName: string;
 

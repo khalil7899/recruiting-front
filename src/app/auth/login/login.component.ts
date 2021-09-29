@@ -3,6 +3,7 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import { JwtResponse } from '../../models/JwtResponse.model';
 import { AuthServiceService } from '../../services/auth/auth-service.service';
+import { User } from '../../models/User.model';
 
 @Component({
   selector: 'ngx-login',
@@ -11,6 +12,13 @@ import { AuthServiceService } from '../../services/auth/auth-service.service';
 
 })
 export class NgxLoginComponent {
+  isRh: any;
+  user: any;
+  trainee: any;
+  candidate: any;
+  isComplet: any;
+  isCandidate: Boolean;
+  isTrainee: Boolean;
  
   loginRequest:LoginRequest=new LoginRequest('','');
 
@@ -32,11 +40,22 @@ export class NgxLoginComponent {
         localStorage.setItem('userFirstName',data.userFirstName);
         localStorage.setItem('userLastName',data.userLastName);
         localStorage.setItem('userRole',data.userRole);
-        localStorage.setItem("roles", JSON.stringify(data.roles));
+        //localStorage.setItem("roles", JSON.stringify(data.roles));
         if(data.userPictureUrl != null && data.userPictureUrl != ""){
         localStorage.setItem("picture",data.userPictureUrl)
         }
-        this.router.navigateByUrl("/recruiting");
+        
+        if (data.userRole === "RH"){
+        this.router.navigateByUrl("/recruiting/administration/candidat-list");
+        }else if(data.userRole === "CANDIDATE"){
+        this.router.navigateByUrl("/recruiting/administration/job-list");
+        }else if(data.userRole === "TRAINEE"){
+        this.router.navigateByUrl("/recruiting/administration/stages-list");
+        }else{
+
+        this.router.navigateByUrl("/recruiting/administration/users-list");
+        }
+      
         this.testAuth=false;
       },
       (error)=>{

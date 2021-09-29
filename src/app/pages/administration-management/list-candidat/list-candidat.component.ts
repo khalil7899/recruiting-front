@@ -49,7 +49,7 @@ export class ListCandidatComponent implements OnInit {
   delUser() {
     const context = this;
     const url = UtilsService.API_USER + '/' + this.currentUser.userId;
-    this.utilsService.delete(`${UtilsService.API_RH}/${this.currentUser.userId}`).subscribe( response => {
+    this.utilsService.delete(`${UtilsService.API_USER}/${this.currentUser.userId}`).subscribe( response => {
         this.utilsService.showToast('success',
           'Utilisateur supprimé avec succés',
           `L'utilisateur'  ${this.currentUser.userLogin} a été supprimé avec succcés`);

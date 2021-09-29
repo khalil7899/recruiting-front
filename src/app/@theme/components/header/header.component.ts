@@ -148,7 +148,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       localStorage.removeItem('token');
       localStorage.removeItem('userFirstName');
       localStorage.removeItem('userFirstName');
-      localStorage.removeItem('roles');
+      //localStorage.removeItem('roles');
       localStorage.removeItem('picture')
     }
     else if(item==="Mon Profile")

@@ -20,9 +20,8 @@ export class DashboardCandidatByOffreComponent implements OnInit {
     startDate: this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
     endDate: this.datePipe.transform(new Date(), 'yyyy-MM-dd'),
   };
-  @ViewChild("linechart1") chart1: UIChart
-  @ViewChild("linechart2") chart2: UIChart
-  @ViewChild("linechart3") chart3: UIChart
+  @ViewChild("linechart") chart1: UIChart
+
   constructor(private utilsService: UtilsService, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
@@ -67,7 +66,6 @@ export class DashboardCandidatByOffreComponent implements OnInit {
       (error) => {
         console.log("error");
       })
-      this.chart1.refresh();
   }
   getCandidatRetenuByOffre() {
     this.utilsService.get(UtilsService.API_STATISTIC + "/candidat-retenu/" + this.candidat.startDate + '/' + this.candidat.endDate).subscribe(data => {
@@ -88,11 +86,12 @@ export class DashboardCandidatByOffreComponent implements OnInit {
       console.log(this.candidatByOffreData);
       this.candidatOffreRetenu=[];
       this.candidatOffreTotal=[];
+      this.chart1.refresh();
+
     },
       (error) => {
         console.log("error");
       })
-      this.chart2.refresh();
   }
    getNbCandidatByOffre(jobOffre:any): number
   {
@@ -127,7 +126,6 @@ export class DashboardCandidatByOffreComponent implements OnInit {
     //   }
     // });
     // return -1;
-    this.chart3.refresh();
   }
   candidatFn() {
     this.getCandidatTotalByOffre();

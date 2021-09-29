@@ -33,15 +33,14 @@
                 [(ngModel)]="candidat.endDate"
                 style="font-size: 13px"
                 (change)="candidatFn()"
-                [min]="candidat.startDate"
-                >
+                [min]="candidat.startDate">
 
             </div>
           </div>
 
         </div>
         <br><br>
-        <div class="mb-12 col-md-12 col-12">
+        <div class="col-12">
           <div class="card">
               <p-chart #linechart type="bar" [data]="candidatByOffreData" ></p-chart>
           </div>

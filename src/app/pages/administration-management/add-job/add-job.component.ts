@@ -56,6 +56,7 @@ export class AddJobComponent implements OnInit {
     this.job.jobOffreDateDebut=this.datePipe.transform(new Date(),"dd-MM-yyyy")
 
     console.log(this.job);
+    this.job["candJobs"]=[];
      this.utilsService.post(
        UtilsService.API_JOB,this.job
      ).subscribe(
@@ -78,7 +79,7 @@ export class AddJobComponent implements OnInit {
          this.utilsService.showToast(
            "danger",
            "Erreur interne",
-           `Un erreur interne a été produit lors du sauvgarde du l'offre d'emplois`
+           `Un erreur interne a été produit lors du sauvgarde du l'offre d'emploi`
          );
        }
      );
